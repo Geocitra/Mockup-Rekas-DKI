@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pemeriksaan Objek - REKAS DKI Jakarta</title>
+
+    <!-- Google Fonts & Font Awesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Poppins', 'sans-serif'] },
+                    colors: {
+                        'dki-blue': '#005A9E',
+                        'dki-orange': '#F7931E',
+                        'dki-green': '#4CAF50',
+                        'light-gray': '#F8F9FA',
+                        'dark-text': '#333333',
+                        'light-text': '#777777',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-light-gray flex font-sans text-dark-text">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-white h-screen flex flex-col shadow-lg fixed top-0 left-0">
+        <div class="flex items-center gap-4 p-5 border-b border-slate-200">
+            <img src="img/logo-dki.png" alt="Logo DKI" class="h-10">
+            <div>
+                <h3 class="font-bold text-dki-blue text-lg">DLH DKI</h3>
+                <p class="text-xs text-light-text tracking-wider">SISTEM MONITORING</p>
+            </div>
+        </div>
+        <nav class="flex-grow p-4 space-y-2">
+            <a href="dashboard.html"
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors"><span><i
+                        class="fa-solid fa-chart-pie w-5"></i></span>Dashboard DLH</a>
+            <a href="list-subjek.html"
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors"><span><i
+                        class="fa-solid fa-users w-5"></i></span>List Subjek</a>
+            <a href="list-objek.html"
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors"><span><i
+                        class="fa-solid fa-building w-5"></i></span>List Objek</a>
+            <a href="list-skrd.html"
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors"><span><i
+                        class="fa-solid fa-file-invoice-dollar w-5"></i></span>List SKRD</a>
+            <a href="ssrd-monitoring.html"
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors"><span><i
+                        class="fa-solid fa-magnifying-glass-dollar w-5"></i></span>SSRD Monitoring</a>
+            <a href="manajemen-objek.html"
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors"><span><i
+                        class="fa-solid fa-tasks w-5"></i></span>Manajemen Objek</a>
+            <a href="pemeriksaan.html"
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg font-semibold bg-blue-50 text-dki-blue border-l-4 border-dki-blue transition-colors"><span><i
+                        class="fa-solid fa-clipboard-check w-5"></i></span>Pemeriksaan</a>
+            <a href="validasi-bayar.html"
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors"><span><i
+                        class="fa-solid fa-check-to-slot w-5"></i></span>Validasi Bayar</a>
+        </nav>
+        <div class="p-5 border-t border-slate-200 space-y-4">
+            <div class="flex items-center gap-3 p-2 bg-slate-50 rounded-lg">
+                <span
+                    class="flex items-center justify-center h-8 w-8 rounded-full bg-dki-orange text-white font-bold text-sm">T</span>
+                <p class="text-xs font-medium text-dark-text truncate">test.dinas@jakarta.go.id</p>
+            </div>
+            <div class="space-y-1">
+                <a href="#" class="flex items-center gap-3 text-sm text-light-text hover:text-dki-blue"><i
+                        class="fa-solid fa-gavel w-5 text-center"></i>Dasar Hukum</a>
+                <a href="login.html" class="flex items-center gap-3 text-sm text-red-500 font-bold hover:underline"><i
+                        class="fa-solid fa-arrow-right-from-bracket w-5 text-center"></i>Keluar</a>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="ml-64 flex-1 p-8">
+        <header class="flex justify-between items-center mb-8">
+            <div>
+                <h1 class="text-2xl font-bold text-dark-text uppercase">Pemeriksaan & Update Data</h1>
+                <p class="text-light-text">Objek: <span class="font-bold text-dki-blue">TOKO AHMAD
+                        (NPOR-2026-000002)</span></p>
+            </div>
+            <a href="manajemen-objek.html"
+                class="bg-white text-dark-text border border-slate-200 font-bold py-2 px-5 rounded-lg shadow-sm hover:bg-slate-50 transition flex items-center gap-2">
+                <i class="fas fa-arrow-left"></i> Kembali
+            </a>
+        </header>
+
+        <form class="space-y-6">
+            <!-- Section 1: Informasi Dasar -->
+            <section class="bg-white p-6 rounded-xl shadow-md">
+                <h3 class="text-lg font-bold text-dark-text mb-6 border-b pb-3 flex items-center gap-2">
+                    <i class="fas fa-info-circle text-dki-blue"></i> Informasi Dasar Objek
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <label class="text-xs font-bold text-light-text uppercase">Nama Objek</label>
+                        <input type="text"
+                            class="w-full p-2.5 border border-slate-200 rounded-lg focus:ring-2 focus:ring-dki-blue focus:outline-none bg-slate-50 transition"
+                            value="TOKO AHMAD">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-xs font-bold text-light-text uppercase">Kategori Objek</label>
+                        <select
+                            class="w-full p-2.5 border border-slate-200 rounded-lg focus:ring-2 focus:ring-dki-blue focus:outline-none bg-slate-50 transition">
+                            <option selected>Toko / Warung</option>
+                            <option>Rumah Tinggal</option>
+                            <option>Kantor</option>
+                            <option>Restoran</option>
+                        </select>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-xs font-bold text-light-text uppercase">Subjek (Owner)</label>
+                        <input type="text"
+                            class="w-full p-2.5 border border-slate-200 rounded-lg bg-slate-100 text-slate-500 cursor-not-allowed"
+                            value="KARDI (1.2203.2201)" disabled>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-xs font-bold text-light-text uppercase">NPOR</label>
+                        <input type="text"
+                            class="w-full p-2.5 border border-slate-200 rounded-lg bg-slate-100 text-slate-500 cursor-not-allowed"
+                            value="NPOR-2026-000002" disabled>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: Alamat -->
+            <section class="bg-white p-6 rounded-xl shadow-md">
+                <h3 class="text-lg font-bold text-dark-text mb-6 border-b pb-3 flex items-center gap-2">
+                    <i class="fas fa-map-marked-alt text-dki-blue"></i> Alamat & Lokasi
+                </h3>
+                <div class="grid grid-cols-1 gap-6">
+                    <div class="space-y-2">
+                        <label class="text-xs font-bold text-light-text uppercase">Alamat Lengkap</label>
+                        <textarea rows="3"
+                            class="w-full p-2.5 border border-slate-200 rounded-lg focus:ring-2 focus:ring-dki-blue focus:outline-none bg-slate-50 transition">Jl. Jenderal Sudirman No.Kav. 52-53, Senayan, Kebayoran Baru, Kota Jakarta Selatan</textarea>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-end">
+                        <div class="space-y-2">
+                            <label class="text-xs font-bold text-light-text uppercase">Koordinat Lokasi</label>
+                            <input type="text"
+                                class="w-full p-2.5 border border-slate-200 rounded-lg focus:ring-2 focus:ring-dki-blue focus:outline-none bg-slate-50 transition"
+                                value="-6.2253, 106.8096">
+                        </div>
+                        <button type="button"
+                            class="bg-slate-800 text-white font-bold py-2.5 px-6 rounded-lg hover:bg-black transition flex items-center justify-center gap-2">
+                            <i class="fas fa-street-view"></i> Lihat di Peta
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: Data Pemeriksaan -->
+            <section class="bg-white p-6 rounded-xl shadow-md">
+                <h3 class="text-lg font-bold text-dark-text mb-6 border-b pb-3 flex items-center gap-2">
+                    <i class="fas fa-clipboard-list text-dki-blue"></i> Data Pemeriksaan Lapangan
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <label class="text-xs font-bold text-light-text uppercase">Volume Sampah (m³/hari)</label>
+                        <input type="number" step="0.1"
+                            class="w-full p-2.5 border border-slate-200 rounded-lg focus:ring-2 focus:ring-dki-blue focus:outline-none bg-slate-50 transition"
+                            value="0.5">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-xs font-bold text-light-text uppercase">Petugas Pemeriksa</label>
+                        <input type="text"
+                            class="w-full p-2.5 border border-slate-200 rounded-lg focus:ring-2 focus:ring-dki-blue focus:outline-none bg-slate-50 transition"
+                            value="Budi Santoso">
+                    </div>
+                    <div class="md:col-span-2 space-y-2">
+                        <label class="text-xs font-bold text-light-text uppercase">Catatan Pemeriksaan</label>
+                        <textarea rows="3"
+                            class="w-full p-2.5 border border-slate-200 rounded-lg focus:ring-2 focus:ring-dki-blue focus:outline-none bg-slate-50 transition">Verifikasi volume sampah sesuai dengan kondisi di lapangan. Pemilik kooperatif.</textarea>
+                    </div>
+                    <div class="md:col-span-2 space-y-4">
+                        <label class="text-xs font-bold text-light-text uppercase block">Status Verifikasi</label>
+                        <div class="flex gap-6">
+                            <label class="flex items-center gap-2 cursor-pointer group">
+                                <input type="radio" name="verifikasi" checked
+                                    class="w-4 h-4 text-dki-blue focus:ring-dki-blue">
+                                <span
+                                    class="text-sm font-medium text-dark-text group-hover:text-dki-blue transition">Terverifikasi</span>
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer group">
+                                <input type="radio" name="verifikasi" class="w-4 h-4 text-dki-blue focus:ring-dki-blue">
+                                <span
+                                    class="text-sm font-medium text-dark-text group-hover:text-dki-blue transition">Perlu
+                                    Tinjauan Ulang</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Actions -->
+            <div class="flex justify-between items-center pt-4">
+                <button type="button" class="text-red-500 font-bold hover:underline flex items-center gap-2">
+                    <i class="fas fa-trash-alt"></i> Hapus Objek
+                </button>
+                <button type="submit"
+                    class="bg-dki-green text-white font-bold py-3 px-8 rounded-xl shadow-lg hover:bg-opacity-90 transform hover:-translate-y-0.5 transition flex items-center gap-2">
+                    <i class="fas fa-save"></i> Simpan Perubahan
+                </button>
+            </div>
+        </form>
+    </main>
+</body>
+
+</html>

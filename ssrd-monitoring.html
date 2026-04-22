@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoring SSRD - REKAS DKI Jakarta</title>
+
+    <!-- Google Fonts & Font Awesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Poppins', 'sans-serif'] },
+                    colors: {
+                        'dki-blue': '#005A9E',
+                        'dki-orange': '#F7931E',
+                        'dki-green': '#4CAF50',
+                        'light-gray': '#F8F9FA',
+                        'dark-text': '#333333',
+                        'light-text': '#777777',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-light-gray flex font-sans text-dark-text">
+
+    <!-- Sidebar (Identik dengan Dashboard) -->
+    <aside class="w-64 bg-white h-screen flex flex-col shadow-lg fixed top-0 left-0">
+        <div class="flex items-center gap-4 p-5 border-b border-slate-200">
+            <img src="img/logo-dki.png" alt="Logo DKI" class="h-10">
+            <div>
+                <h3 class="font-bold text-dki-blue text-lg">DLH DKI</h3>
+                <p class="text-xs text-light-text tracking-wider">SISTEM MONITORING</p>
+            </div>
+        </div>
+        <nav class="flex-grow p-4 space-y-2">
+            <a href="dashboard.html"
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors"><span><i
+                        class="fa-solid fa-chart-pie w-5"></i></span>Dashboard DLH</a>
+            <a href="list-subjek.html"
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors"><span><i
+                        class="fa-solid fa-users w-5"></i></span>List Subjek</a>
+            <a href="list-objek.html"
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors"><span><i
+                        class="fa-solid fa-building w-5"></i></span>List Objek</a>
+            <a href="list-skrd.html"
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors"><span><i
+                        class="fa-solid fa-file-invoice-dollar w-5"></i></span>List SKRD</a>
+            <a href="ssrd-monitoring.html"
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg font-semibold bg-blue-50 text-dki-blue border-l-4 border-dki-blue transition-colors"><span><i
+                        class="fa-solid fa-magnifying-glass-dollar w-5"></i></span>SSRD Monitoring</a>
+            <a href="manajemen-objek.html"
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors"><span><i
+                        class="fa-solid fa-tasks w-5"></i></span>Manajemen Objek</a>
+            <a href="pemeriksaan.html"
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors"><span><i
+                        class="fa-solid fa-clipboard-check w-5"></i></span>Pemeriksaan</a>
+            <a href="validasi-bayar.html"
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors"><span><i
+                        class="fa-solid fa-check-to-slot w-5"></i></span>Validasi Bayar</a>
+        </nav>
+        <div class="p-5 border-t border-slate-200 space-y-4">
+            <div class="flex items-center gap-3 p-2 bg-slate-50 rounded-lg">
+                <span
+                    class="flex items-center justify-center h-8 w-8 rounded-full bg-dki-orange text-white font-bold text-sm">T</span>
+                <p class="text-xs font-medium text-dark-text truncate">test.dinas@jakarta.go.id</p>
+            </div>
+            <div class="space-y-1">
+                <a href="#" class="flex items-center gap-3 text-sm text-light-text hover:text-dki-blue"><i
+                        class="fa-solid fa-gavel w-5 text-center"></i>Dasar Hukum</a>
+                <a href="login.html" class="flex items-center gap-3 text-sm text-red-500 font-bold hover:underline"><i
+                        class="fa-solid fa-arrow-right-from-bracket w-5 text-center"></i>Keluar</a>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="ml-64 flex-1 p-8">
+        <header class="flex justify-between items-center mb-8">
+            <div>
+                <h1 class="text-2xl font-bold text-dark-text">MONITORING PEMBAYARAN & SSRD</h1>
+                <p class="text-light-text">Monitoring penerbitan SSRD oleh Bendahara secara real-time.</p>
+            </div>
+        </header>
+
+        <!-- Search Bar -->
+        <section class="bg-white p-4 rounded-xl shadow-md mb-8">
+            <div class="relative">
+                <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-light-text">
+                    <i class="fas fa-search"></i>
+                </span>
+                <input type="text"
+                    class="block w-full pl-10 pr-3 py-2 border border-slate-200 rounded-lg bg-slate-50 focus:outline-none focus:ring-2 focus:ring-dki-blue focus:bg-white transition-all"
+                    placeholder="Cari No. SKRD / SSRD...">
+            </div>
+        </section>
+
+        <!-- Data Table -->
+        <section class="bg-white rounded-xl shadow-md overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm text-left">
+                    <thead class="bg-slate-50 text-xs text-light-text uppercase">
+                        <tr>
+                            <th class="p-4">Objek Retribusi</th>
+                            <th class="p-4">No. SKRD / Nominal</th>
+                            <th class="p-4">Poin</th>
+                            <th class="p-4">Tgl Bayar</th>
+                            <th class="p-4">Status</th>
+                            <th class="p-4 text-center">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                        <tr class="hover:bg-slate-50 transition-colors">
+                            <td class="p-4">
+                                <div class="font-bold text-dark-text uppercase">Toko Ahmad</div>
+                                <div class="text-xs text-light-text font-medium">NPOR-2026-000002</div>
+                            </td>
+                            <td class="p-4">
+                                <div class="font-semibold text-dki-blue">SKRD/2026/04/IGBCJ</div>
+                                <div class="font-bold text-dark-text mt-0.5">Rp 1,422,560</div>
+                            </td>
+                            <td class="p-4 text-light-text font-medium">0</td>
+                            <td class="p-4 text-light-text font-medium">08 Apr 2026</td>
+                            <td class="p-4">
+                                <span
+                                    class="bg-green-100 text-dki-green text-[10px] font-bold px-3 py-1 rounded-full">PAID</span>
+                            </td>
+                            <td class="p-4 text-center">
+                                <button
+                                    class="bg-dki-blue text-white text-xs font-bold py-2 px-4 rounded-lg hover:bg-opacity-90 shadow-sm transition-all">Lihat
+                                    SSRD</button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition-colors">
+                            <td class="p-4">
+                                <div class="font-bold text-dark-text uppercase">Toko Ahmad</div>
+                                <div class="text-xs text-light-text font-medium">NPOR-2026-000002</div>
+                            </td>
+                            <td class="p-4">
+                                <div class="font-semibold text-dki-blue">SKRD/2026/04/VXTTYQ</div>
+                                <div class="font-bold text-dark-text mt-0.5">Rp 636,500</div>
+                            </td>
+                            <td class="p-4 text-light-text font-medium">0</td>
+                            <td class="p-4 text-light-text font-medium">07 Apr 2026</td>
+                            <td class="p-4">
+                                <span
+                                    class="bg-green-100 text-dki-green text-[10px] font-bold px-3 py-1 rounded-full">PAID</span>
+                            </td>
+                            <td class="p-4 text-center">
+                                <button
+                                    class="bg-dki-blue text-white text-xs font-bold py-2 px-4 rounded-lg hover:bg-opacity-90 shadow-sm transition-all">Lihat
+                                    SSRD</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manajemen Tagihan SKRD - REKAS DKI</title>
+    <!-- (Salin & Tempel seluruh isi <head> dari file sebelumnya) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Poppins', 'sans-serif'] },
+                    colors: {
+                        'dki-blue': '#005A9E', 'dki-orange': '#F7931E', 'dki-green': '#4CAF50',
+                        'light-gray': '#F8F9FA', 'dark-text': '#333333', 'light-text': '#777777',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-light-gray flex font-sans text-dark-text">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-white h-screen flex flex-col shadow-lg fixed top-0 left-0">
+        <!-- (Salin & Tempel sidebar, ubah 'active' class ke link List SKRD) -->
+        <div class="flex items-center gap-4 p-5 border-b border-slate-200">
+            <img src="img/logo-dki.png" alt="Logo DKI" class="h-10">
+            <div>
+                <h3 class="font-bold text-dki-blue text-lg">DLH DKI</h3>
+                <p class="text-xs text-light-text tracking-wider">SISTEM MONITORING</p>
+            </div>
+        </div>
+        <nav class="flex-grow p-4 space-y-2">
+            <a href="dashboard.html"
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors"><span><i
+                        class="fa-solid fa-chart-pie w-5"></i></span>Dashboard DLH</a>
+            <a href="list-subjek.html"
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors"><span><i
+                        class="fa-solid fa-users w-5"></i></span>List Subjek</a>
+            <a href="list-objek.html"
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors"><span><i
+                        class="fa-solid fa-building w-5"></i></span>List Objek</a>
+            <a href="list-skrd.html"
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg font-semibold bg-blue-50 text-dki-blue border-l-4 border-dki-blue transition-colors"><span><i
+                        class="fa-solid fa-file-invoice-dollar w-5"></i></span>List SKRD</a>
+            <a href="ssrd-monitoring.html"
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors"><span><i
+                        class="fa-solid fa-magnifying-glass-dollar w-5"></i></span>SSRD Monitoring</a>
+            <a href="manajemen-objek.html"
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors"><span><i
+                        class="fa-solid fa-tasks w-5"></i></span>Manajemen Objek</a>
+            <a href="pemeriksaan.html"
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors"><span><i
+                        class="fa-solid fa-clipboard-check w-5"></i></span>Pemeriksaan</a>
+            <a href="validasi-bayar.html"
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors"><span><i
+                        class="fa-solid fa-check-to-slot w-5"></i></span>Validasi Bayar</a>
+        </nav>
+        <div class="p-5 border-t border-slate-200 space-y-4">
+            <div class="flex items-center gap-3 p-2 bg-slate-50 rounded-lg">
+                <span
+                    class="flex items-center justify-center h-8 w-8 rounded-full bg-dki-orange text-white font-bold text-sm">T</span>
+                <p class="text-xs font-medium text-dark-text truncate">test.dinas@jakarta.go.id</p>
+            </div>
+            <div class="space-y-1">
+                <a href="#" class="flex items-center gap-3 text-sm text-light-text hover:text-dki-blue"><i
+                        class="fa-solid fa-gavel w-5 text-center"></i>Dasar Hukum</a>
+                <a href="login.html" class="flex items-center gap-3 text-sm text-red-500 font-bold hover:underline"><i
+                        class="fa-solid fa-arrow-right-from-bracket w-5 text-center"></i>Keluar</a>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="ml-64 flex-1 p-8">
+        <header class="flex justify-between items-center mb-8">
+            <div>
+                <h1 class="text-2xl font-bold text-dark-text">MANAJEMEN TAGIHAN SKRD</h1>
+                <p class="text-light-text">Pantau status pembayaran dan piutang retribusi objek.</p>
+            </div>
+        </header>
+
+        <!-- Stats Cards -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div
+                class="bg-white p-6 rounded-xl shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                <p class="text-sm text-light-text font-medium">TOTAL SKRD TERBIT</p>
+                <h2 class="text-3xl font-bold text-dki-blue mt-2">4 Dokumen</h2>
+            </div>
+            <div
+                class="bg-white p-6 rounded-xl shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                <p class="text-sm text-light-text font-medium">MASA AKTIF</p>
+                <h2 class="text-3xl font-bold text-dki-blue mt-2">Januari 2026</h2>
+            </div>
+            <div
+                class="bg-white p-6 rounded-xl shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                <p class="text-sm text-light-text font-medium">TOTAL TAGIHAN BERJALAN</p>
+                <h2 class="text-3xl font-bold text-dki-blue mt-2">Rp 3,579,460</h2>
+            </div>
+        </section>
+
+        <section class="bg-white rounded-xl shadow-md">
+            <div class="p-6 flex flex-wrap gap-4 justify-between items-center">
+                <!-- Search Bar -->
+                <div class="relative flex-grow">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400"><i
+                            class="fa-solid fa-search"></i></span>
+                    <input type="text" placeholder="Cari Nomor SKRD atau Nama Objek..."
+                        class="w-full md:w-80 pl-10 pr-4 py-3 border border-slate-200 rounded-lg bg-slate-50 focus:outline-none focus:ring-2 focus:ring-dki-blue transition">
+                </div>
+                <!-- Filter Tabs -->
+                <div class="flex bg-slate-100 rounded-lg p-1">
+                    <button
+                        class="px-4 py-2 text-sm font-semibold text-white bg-dki-blue rounded-md shadow">ALL</button>
+                    <button
+                        class="px-4 py-2 text-sm font-semibold text-light-text rounded-md hover:bg-white">PAID</button>
+                    <button
+                        class="px-4 py-2 text-sm font-semibold text-light-text rounded-md hover:bg-white">UNPAID</button>
+                    <button
+                        class="px-4 py-2 text-sm font-semibold text-light-text rounded-md hover:bg-white">OVERDUE</button>
+                </div>
+            </div>
+
+            <!-- Data Table -->
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm text-left">
+                    <thead class="bg-slate-50 text-xs text-light-text uppercase">
+                        <tr>
+                            <th class="p-4 rounded-tl-lg">Objek Retribusi</th>
+                            <th class="p-4">Nomor SKRD / Masa</th>
+                            <th class="p-4">Total Tagihan</th>
+                            <th class="p-4">Jatuh Tempo</th>
+                            <th class="p-4">Status</th>
+                            <th class="p-4 rounded-tr-lg">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b border-slate-100 hover:bg-slate-50">
+                            <td class="p-4">
+                                <div class="flex items-center gap-4">
+                                    <div
+                                        class="flex-shrink-0 h-10 w-10 flex items-center justify-center bg-blue-100 text-dki-blue rounded-lg">
+                                        <i class="fa-solid fa-home"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-light-text">P02FLSK / KARDI</p>
+                                        <p class="font-bold text-dark-text">RUMAH YOGA</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="p-4">
+                                <p class="font-semibold text-dark-text">SKRD/2026/04/5254B</p>
+                                <p class="text-xs text-light-text">Masa: 6 Bulan</p>
+                            </td>
+                            <td class="p-4 font-bold text-dark-text">Rp 1,443,600</td>
+                            <td class="p-4 text-slate-600">08 Mei 2026</td>
+                            <td class="p-4"><span
+                                    class="bg-orange-100 text-dki-orange text-xs font-bold px-3 py-1 rounded-full">BELUM
+                                    BAYAR</span></td>
+                            <td class="p-4">
+                                <div class="flex items-center gap-4">
+                                    <button class="text-light-text hover:text-dki-blue text-lg"><i
+                                            class="fa-solid fa-print"></i></button>
+                                    <button class="text-light-text hover:text-red-500 text-lg"><i
+                                            class="fa-solid fa-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="border-b border-slate-100 hover:bg-slate-50">
+                            <td class="p-4">
+                                <div class="flex items-center gap-4">
+                                    <div
+                                        class="flex-shrink-0 h-10 w-10 flex items-center justify-center bg-blue-100 text-dki-blue rounded-lg">
+                                        <i class="fa-solid fa-store"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-light-text">P02FLSK / KARDI</p>
+                                        <p class="font-bold text-dark-text">TOKO AHMAD</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="p-4">
+                                <p class="font-semibold text-dark-text">SKRD/2026/04/VXTTYQ</p>
+                                <p class="text-xs text-light-text">Masa: 1 Bulan</p>
+                            </td>
+                            <td class="p-4 font-bold text-dark-text">Rp 636,500</td>
+                            <td class="p-4 text-slate-600">07 Mei 2026</td>
+                            <td class="p-4"><span
+                                    class="bg-green-100 text-dki-green text-xs font-bold px-3 py-1 rounded-full">SUDAH
+                                    BAYAR</span></td>
+                            <td class="p-4">
+                                <div class="flex items-center gap-4">
+                                    <button class="text-light-text hover:text-dki-blue text-lg"><i
+                                            class="fa-solid fa-print"></i></button>
+                                    <button class="text-light-text hover:text-red-500 text-lg"><i
+                                            class="fa-solid fa-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+</body>
+
+</html>

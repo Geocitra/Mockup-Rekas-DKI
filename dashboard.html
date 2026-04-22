@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - REKAS DKI Jakarta</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome untuk Ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Konfigurasi warna kustom sesuai identitas DKI Jakarta
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        'dki-blue': '#005A9E',   // Primary Color
+                        'dki-orange': '#F7931E', // Secondary / Accent
+                        'dki-green': '#4CAF50',  // Success / Action Color
+                        'light-gray': '#F8F9FA', // Background Light
+                        'dark-text': '#333333',
+                        'light-text': '#777777',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-light-gray flex font-sans text-dark-text">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-white h-screen flex flex-col shadow-lg fixed top-0 left-0">
+        <div class="flex items-center gap-4 p-5 border-b border-slate-200">
+            <img src="img/logo-dki.png" alt="Logo DKI" class="h-10">
+            <div>
+                <h3 class="font-bold text-dki-blue text-lg">DLH DKI</h3>
+                <p class="text-xs text-light-text tracking-wider">SISTEM MONITORING</p>
+            </div>
+        </div>
+        <nav class="flex-grow p-4 space-y-2">
+            <!-- Pola Link: Untuk link aktif, tambahkan kelas bg-blue-50 text-dki-blue border-dki-blue -->
+            <a href="dashboard.html"
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg font-semibold bg-blue-50 text-dki-blue border-l-4 border-dki-blue transition-colors"><span><i
+                        class="fa-solid fa-chart-pie w-5"></i></span>Dashboard DLH</a>
+            <a href="list-subjek.html"
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors"><span><i
+                        class="fa-solid fa-users w-5"></i></span>List Subjek</a>
+            <a href="list-objek.html"
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors"><span><i
+                        class="fa-solid fa-building w-5"></i></span>List Objek</a>
+            <a href="list-skrd.html"
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors"><span><i
+                        class="fa-solid fa-file-invoice-dollar w-5"></i></span>List SKRD</a>
+            <a href="ssrd-monitoring.html"
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors"><span><i
+                        class="fa-solid fa-magnifying-glass-dollar w-5"></i></span>SSRD Monitoring</a>
+            <a href="manajemen-objek.html"
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors"><span><i
+                        class="fa-solid fa-tasks w-5"></i></span>Manajemen Objek</a>
+            <a href="pemeriksaan.html"
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors"><span><i
+                        class="fa-solid fa-clipboard-check w-5"></i></span>Pemeriksaan</a>
+            <a href="validasi-bayar.html"
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors"><span><i
+                        class="fa-solid fa-check-to-slot w-5"></i></span>Validasi Bayar</a>
+        </nav>
+        <div class="p-5 border-t border-slate-200 space-y-4">
+            <div class="flex items-center gap-3 p-2 bg-slate-50 rounded-lg">
+                <span
+                    class="flex items-center justify-center h-8 w-8 rounded-full bg-dki-orange text-white font-bold text-sm">T</span>
+                <p class="text-xs font-medium text-dark-text truncate">test.dinas@jakarta.go.id</p>
+            </div>
+            <div class="space-y-1">
+                <a href="#" class="flex items-center gap-3 text-sm text-light-text hover:text-dki-blue"><i
+                        class="fa-solid fa-gavel w-5 text-center"></i>Dasar Hukum</a>
+                <a href="login.html" class="flex items-center gap-3 text-sm text-red-500 font-bold hover:underline"><i
+                        class="fa-solid fa-arrow-right-from-bracket w-5 text-center"></i>Keluar</a>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="ml-64 flex-1 p-8">
+        <header class="flex justify-between items-center mb-8">
+            <div>
+                <h1 class="text-2xl font-bold text-dark-text">REPORTING DINAS</h1>
+                <p class="text-light-text">PUSAT DATA & ANALISIS RETRIBUSI REKAS</p>
+            </div>
+            <button
+                class="bg-dki-green text-white font-bold py-2 px-5 rounded-lg shadow-md hover:bg-opacity-90 transition transform hover:-translate-y-0.5">
+                <i class="fas fa-file-excel mr-2"></i>Export Excel
+            </button>
+        </header>
+
+        <!-- Stats Cards -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div
+                class="bg-white p-6 rounded-xl shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                <p class="text-sm text-light-text font-medium">REALISASI TAHUN INI</p>
+                <h2 class="text-3xl font-bold text-dki-blue mt-2">Rp 2,135,860</h2>
+            </div>
+            <div
+                class="bg-white p-6 rounded-xl shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                <p class="text-sm text-light-text font-medium">KEPATUHAN</p>
+                <h2 class="text-3xl font-bold text-dki-blue mt-2">75.00%</h2>
+            </div>
+            <div
+                class="bg-white p-6 rounded-xl shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                <p class="text-sm text-light-text font-medium">TARGET PAD</p>
+                <h2 class="text-3xl font-bold text-dki-blue mt-2">Rp 120.5 M</h2>
+            </div>
+        </section>
+
+        <!-- Filter Section -->
+        <section class="bg-white p-6 rounded-xl shadow-md mb-8">
+            <h3 class="font-bold text-dark-text mb-4">PILIH JENIS LAPORAN</h3>
+            <div class="flex flex-wrap items-center gap-4">
+                <div class="flex bg-slate-100 rounded-lg p-1">
+                    <button class="px-4 py-2 text-sm font-semibold text-light-text rounded-md">Tahunan</button>
+                    <button
+                        class="px-4 py-2 text-sm font-semibold text-white bg-dki-blue rounded-md shadow">Bulanan</button>
+                    <button class="px-4 py-2 text-sm font-semibold text-light-text rounded-md">Wilayah</button>
+                </div>
+                <div class="flex items-center gap-4 flex-grow">
+                    <div>
+                        <label class="text-xs font-bold text-light-text">TAHUN</label>
+                        <input type="text" value="2026" class="mt-1 p-2 border rounded-lg bg-slate-100 text-center"
+                            readonly>
+                    </div>
+                    <div>
+                        <label class="text-xs font-bold text-light-text">MASA/BULAN</label>
+                        <input type="text" value="April" class="mt-1 p-2 border rounded-lg bg-slate-100 text-center"
+                            readonly>
+                    </div>
+                </div>
+                <button
+                    class="bg-dki-blue text-white font-bold py-3 px-6 rounded-lg shadow-md hover:bg-opacity-90">Generate
+                    Report</button>
+            </div>
+        </section>
+
+        <!-- Data Table -->
+        <section class="bg-white rounded-xl shadow-md">
+            <div class="overflow-x-auto p-6">
+                <table class="w-full text-sm text-left">
+                    <thead class="bg-slate-50 text-xs text-light-text uppercase">
+                        <tr>
+                            <th class="p-4 rounded-l-lg">Periode</th>
+                            <th class="p-4">No. SKRD</th>
+                            <th class="p-4">Kategori</th>
+                            <th class="p-4">Nominal (Rp)</th>
+                            <th class="p-4 rounded-r-lg">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b border-slate-100 hover:bg-slate-50">
+                            <td class="p-4 font-medium">07 Apr 2026</td>
+                            <td class="p-4 text-slate-600">SKRD/2026/04/VXTTIQ</td>
+                            <td class="p-4"><span
+                                    class="bg-blue-100 text-dki-blue text-xs font-bold px-3 py-1 rounded-full">PRIBADI</span>
+                            </td>
+                            <td class="p-4 font-bold text-dark-text">636.500</td>
+                            <td class="p-4"><span
+                                    class="bg-green-100 text-dki-green text-xs font-bold px-3 py-1 rounded-full">PAID</span>
+                            </td>
+                        </tr>
+                        <tr class="border-b border-slate-100 hover:bg-slate-50">
+                            <td class="p-4 font-medium">07 Apr 2026</td>
+                            <td class="p-4 text-slate-600">SKRD/2026/04/M6GBH</td>
+                            <td class="p-4"><span
+                                    class="bg-blue-100 text-dki-blue text-xs font-bold px-3 py-1 rounded-full">PRIBADI</span>
+                            </td>
+                            <td class="p-4 font-bold text-dark-text">76.800</td>
+                            <td class="p-4"><span
+                                    class="bg-green-100 text-dki-green text-xs font-bold px-3 py-1 rounded-full">PAID</span>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-50">
+                            <td class="p-4 font-medium">07 Apr 2026</td>
+                            <td class="p-4 text-slate-600">SKRD/2026/04/IGBCJ</td>
+                            <td class="p-4"><span
+                                    class="bg-blue-100 text-dki-blue text-xs font-bold px-3 py-1 rounded-full">PRIBADI</span>
+                            </td>
+                            <td class="p-4 font-bold text-dark-text">1.422.560</td>
+                            <td class="p-4"><span
+                                    class="bg-green-100 text-dki-green text-xs font-bold px-3 py-1 rounded-full">PAID</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

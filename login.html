@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Portal - REKAS JKT</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <style>
+        body {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1555899434-94d1368aa7af?q=80&w=2070') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-jakarta {
+            background-color: #198754;
+            color: white;
+            border-radius: 10px;
+            padding: 12px;
+        }
+
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            background: #198754;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-card text-center">
+        <div class="icon-box">
+            <i class="bi bi-shield-check"></i>
+        </div>
+        <h4 class="fw-bold">PORTAL INTERNAL REKAS</h4>
+        <p class="text-muted small">Sistem Elektronik Retribusi Persampahan <br> DKI Jakarta</p>
+
+        <form class="text-start mt-4">
+            <!-- Username -->
+            <div class="mb-3">
+                <label class="form-label small fw-bold text-uppercase">Username</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-white"><i class="bi bi-person text-muted"></i></span>
+                    <input type="text" class="form-control border-start-0" placeholder="Masukkan Username">
+                </div>
+            </div>
+
+            <!-- Password -->
+            <div class="mb-4">
+                <label class="form-label small fw-bold text-uppercase">Password</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-white"><i class="bi bi-lock text-muted"></i></span>
+                    <input type="password" class="form-control border-start-0" placeholder="Masukkan Password">
+                </div>
+            </div>
+
+            <!-- Tombol Login Dinas -->
+            <button type="submit" formaction="dashboard.html" class="btn w-100 fw-bold mb-3 shadow-sm"
+                style="background-color: #005A9E; color: white;">
+                MASUK SEBAGAI DINAS <i class="bi bi-shield-lock ms-2"></i>
+            </button>
+
+            <!-- Tombol Login Wajib Retribusi -->
+            <button type="submit" formaction="user/dashboard-wajib.html" class="btn w-100 fw-bold shadow-sm"
+                style="background-color: #22C55E; color: white;">
+                MASUK WAJIB RETRIBUSI <i class="bi bi-person-check ms-2"></i>
+            </button>
+
+            <div class="text-center mt-4">
+                <a href="#" class="small text-muted text-decoration-none">Lupa Password?</a>
+            </div>
+        </form>
+
+        <div class="mt-4 text-muted" style="font-size: 11px;">
+            © 2024 Dinas Lingkungan Hidup DKI Jakarta <br>
+            Keamanan data adalah prioritas kami.
+        </div>
+    </div>
+
+</body>
+
+</html>

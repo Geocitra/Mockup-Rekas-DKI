@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Objek - REKAS DKI Jakarta</title>
+    <!-- (Salin & Tempel seluruh isi <head> dari file sebelumnya) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Poppins', 'sans-serif'] },
+                    colors: {
+                        'dki-blue': '#005A9E', 'dki-orange': '#F7931E', 'dki-green': '#4CAF50',
+                        'light-gray': '#F8F9FA', 'dark-text': '#333333', 'light-text': '#777777',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-light-gray flex font-sans text-dark-text">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-white h-screen flex flex-col shadow-lg fixed top-0 left-0">
+        <!-- (Salin & Tempel sidebar, ubah 'active' class ke link List Objek) -->
+        <div class="flex items-center gap-4 p-5 border-b border-slate-200">
+            <img src="img/logo-dki.png" alt="Logo DKI" class="h-10">
+            <div>
+                <h3 class="font-bold text-dki-blue text-lg">DLH DKI</h3>
+                <p class="text-xs text-light-text tracking-wider">SISTEM MONITORING</p>
+            </div>
+        </div>
+        <nav class="flex-grow p-4 space-y-2">
+            <a href="dashboard.html"
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors"><span><i
+                        class="fa-solid fa-chart-pie w-5"></i></span>Dashboard DLH</a>
+            <a href="list-subjek.html"
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors"><span><i
+                        class="fa-solid fa-users w-5"></i></span>List Subjek</a>
+            <a href="list-objek.html"
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg font-semibold bg-blue-50 text-dki-blue border-l-4 border-dki-blue transition-colors"><span><i
+                        class="fa-solid fa-building w-5"></i></span>List Objek</a>
+            <a href="list-skrd.html"
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors"><span><i
+                        class="fa-solid fa-file-invoice-dollar w-5"></i></span>List SKRD</a>
+            <a href="ssrd-monitoring.html"
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors"><span><i
+                        class="fa-solid fa-magnifying-glass-dollar w-5"></i></span>SSRD Monitoring</a>
+            <a href="manajemen-objek.html"
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors"><span><i
+                        class="fa-solid fa-tasks w-5"></i></span>Manajemen Objek</a>
+            <a href="pemeriksaan.html"
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors"><span><i
+                        class="fa-solid fa-clipboard-check w-5"></i></span>Pemeriksaan</a>
+            <a href="validasi-bayar.html"
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors"><span><i
+                        class="fa-solid fa-check-to-slot w-5"></i></span>Validasi Bayar</a>
+        </nav>
+        <div class="p-5 border-t border-slate-200 space-y-4">
+            <div class="flex items-center gap-3 p-2 bg-slate-50 rounded-lg">
+                <span
+                    class="flex items-center justify-center h-8 w-8 rounded-full bg-dki-orange text-white font-bold text-sm">T</span>
+                <p class="text-xs font-medium text-dark-text truncate">test.dinas@jakarta.go.id</p>
+            </div>
+            <div class="space-y-1">
+                <a href="#" class="flex items-center gap-3 text-sm text-light-text hover:text-dki-blue"><i
+                        class="fa-solid fa-gavel w-5 text-center"></i>Dasar Hukum</a>
+                <a href="login.html" class="flex items-center gap-3 text-sm text-red-500 font-bold hover:underline"><i
+                        class="fa-solid fa-arrow-right-from-bracket w-5 text-center"></i>Keluar</a>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="ml-64 flex-1 p-8">
+        <header class="flex justify-between items-center mb-8">
+            <div>
+                <h1 class="text-2xl font-bold text-dark-text">LIST OBJEK & RIWAYAT SKRD</h1>
+                <p class="text-light-text">Manajemen penetapan tarif objek retribusi.</p>
+            </div>
+        </header>
+
+        <section class="bg-white rounded-xl shadow-md">
+            <div class="p-6">
+                <!-- Search Bar -->
+                <div class="relative">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400"><i
+                            class="fa-solid fa-search"></i></span>
+                    <input type="text" placeholder="Cari Nama Objek / NPOR..."
+                        class="w-full pl-10 pr-4 py-3 border border-slate-200 rounded-lg bg-slate-50 focus:outline-none focus:ring-2 focus:ring-dki-blue transition">
+                </div>
+            </div>
+
+            <!-- Data Table -->
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm text-left">
+                    <thead class="bg-slate-50 text-xs text-light-text uppercase">
+                        <tr>
+                            <th class="p-4 rounded-tl-lg">Objek Retribusi</th>
+                            <th class="p-4">Info Wilayah</th>
+                            <th class="p-4">Saldo Poin</th>
+                            <th class="p-4">Riwayat SKRD</th>
+                            <th class="p-4 rounded-tr-lg">Aksi Operasional</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b border-slate-100 hover:bg-slate-50">
+                            <td class="p-4">
+                                <div class="flex items-center gap-4">
+                                    <div
+                                        class="flex-shrink-0 h-10 w-10 flex items-center justify-center bg-blue-100 text-dki-blue rounded-lg">
+                                        <i class="fa-solid fa-store"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-bold text-dark-text">TOKO AHMAD</p>
+                                        <p class="text-xs text-light-text">Owner: KARDI</p>
+                                        <span
+                                            class="mt-1 inline-block bg-green-100 text-dki-green text-xs font-bold px-2 py-0.5 rounded-full">AKTIF</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="p-4">
+                                <p class="font-semibold text-dark-text">BABAKAN MADANG</p>
+                                <p class="text-xs text-light-text">Babakan Madang</p>
+                            </td>
+                            <td class="p-4">
+                                <p class="font-bold text-dark-text"><i class="fa-solid fa-star text-yellow-400"></i> 0
+                                </p>
+                                <p class="text-xs text-light-text">Reward Terkumpul</p>
+                            </td>
+                            <td class="p-4"><a href="#"
+                                    class="bg-blue-100 text-dki-blue text-xs font-bold px-3 py-1 rounded-full hover:bg-blue-200">2
+                                    SKRD</a></td>
+                            <td class="p-4">
+                                <button
+                                    class="bg-dki-orange text-white text-xs font-bold px-4 py-2 rounded-md hover:bg-opacity-90">PENETAPAN</button>
+                            </td>
+                        </tr>
+                        <tr class="border-b border-slate-100 hover:bg-slate-50">
+                            <td class="p-4">
+                                <div class="flex items-center gap-4">
+                                    <div
+                                        class="flex-shrink-0 h-10 w-10 flex items-center justify-center bg-blue-100 text-dki-blue rounded-lg">
+                                        <i class="fa-solid fa-home"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-bold text-dark-text">RUMAH YOGA</p>
+                                        <p class="text-xs text-light-text">Owner: KARDI</p>
+                                        <span
+                                            class="mt-1 inline-block bg-green-100 text-dki-green text-xs font-bold px-2 py-0.5 rounded-full">AKTIF</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="p-4">
+                                <p class="font-semibold text-dark-text">BABAKAN MADANG</p>
+                                <p class="text-xs text-light-text">Babakan Madang</p>
+                            </td>
+                            <td class="p-4">
+                                <p class="font-bold text-dark-text"><i class="fa-solid fa-star text-yellow-400"></i> 0
+                                </p>
+                                <p class="text-xs text-light-text">Reward Terkumpul</p>
+                            </td>
+                            <td class="p-4"><a href="#"
+                                    class="bg-blue-100 text-dki-blue text-xs font-bold px-3 py-1 rounded-full hover:bg-blue-200">2
+                                    SKRD</a></td>
+                            <td class="p-4">
+                                <button
+                                    class="bg-dki-orange text-white text-xs font-bold px-4 py-2 rounded-md hover:bg-opacity-90">PENETAPAN</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Table Footer -->
+            <div class="p-4 flex justify-between items-center text-sm text-light-text">
+                <span>TOTAL 2 OBJEK</span>
+                <div class="flex items-center gap-4">
+                    <button class="px-3 py-1 border rounded-md hover:bg-slate-100 disabled:opacity-50"
+                        disabled>&lt;</button>
+                    <span>1/1</span>
+                    <button class="px-3 py-1 border rounded-md hover:bg-slate-100 disabled:opacity-50"
+                        disabled>&gt;</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+</body>
+
+</html>

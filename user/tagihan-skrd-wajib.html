@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tagihan SKRD - REKAS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Poppins', 'sans-serif'] },
+                    colors: {
+                        'rekas-green': '#22C55E',
+                        'dki-blue': '#005A9E',
+                        'dark-navy': '#1E293B',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-[#F8F9FA] flex font-sans text-slate-700">
+
+    <!-- Sidebar (Identik dengan Dashboard) -->
+    <aside class="w-64 bg-white h-screen flex flex-col shadow-sm fixed top-0 left-0">
+        <div class="p-6">
+            <div class="flex items-center gap-3">
+                <div class="bg-rekas-green p-2 rounded-lg text-white">
+                    <i class="fas fa-leaf text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-xl leading-none text-slate-800">REKAS</h1>
+                    <p class="text-[10px] font-bold text-slate-400 tracking-widest mt-1 uppercase">Wajib Retribusi</p>
+                </div>
+            </div>
+        </div>
+        <nav class="flex-grow px-4 space-y-1">
+            <a href="dashboard-wajib.html"
+                class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 font-medium hover:bg-slate-50 transition">
+                <i class="fa-solid fa-home w-5 text-center"></i> Dashboard
+            </a>
+            <a href="tagihan-skrd-wajib.html"
+                class="flex items-center justify-between px-4 py-3 rounded-xl bg-rekas-green text-white font-semibold shadow-md shadow-green-100">
+                <span class="flex items-center gap-3"><i class="fa-solid fa-file-invoice w-5"></i> Tagihan SKRD</span>
+                <div class="w-1.5 h-1.5 bg-white rounded-full"></div>
+            </a>
+            <a href="bukti-ssrd-wajib.html"
+                class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 font-medium hover:bg-slate-50 transition">
+                <i class="fa-solid fa-receipt w-5 text-center"></i> Bukti SSRD
+            </a>
+            <a href="layanan-pembayaran-wajib.html"
+                class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 font-medium hover:bg-slate-50 transition">
+                <i class="fa-solid fa-hand-holding-heart w-5 text-center"></i> Layanan
+            </a>
+            <a href="ubah-password-wajib.html"
+                class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 font-medium hover:bg-slate-50 transition">
+                <i class="fa-solid fa-key w-5 text-center"></i> Ubah Password
+            </a>
+        </nav>
+
+        <div class="p-4 border-t border-slate-100">
+            <div class="bg-slate-50 rounded-2xl p-4 flex items-center gap-3 mb-4">
+                <div
+                    class="h-10 w-10 rounded-full bg-green-100 text-rekas-green flex items-center justify-center font-bold">
+                    U</div>
+                <div>
+                    <p class="text-sm font-bold text-slate-800">User</p>
+                    <p class="text-[10px] text-rekas-green font-bold">USER</p>
+                </div>
+            </div>
+            <div class="space-y-1">
+                <a href="#" class="flex items-center gap-3 px-4 py-2 text-sm text-slate-500 hover:text-slate-800"><i
+                        class="fa-solid fa-book w-4 text-center"></i> Dasar Hukum</a>
+                <a href="../login.html"
+                    class="flex items-center gap-3 px-4 py-2 text-sm text-red-500 font-bold hover:bg-red-50 rounded-lg"><i
+                        class="fa-solid fa-right-from-bracket w-4 text-center"></i> Keluar</a>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="ml-64 flex-1 p-10">
+        <!-- Billing Banner -->
+        <section
+            class="bg-dark-navy rounded-[2.5rem] p-10 mb-10 relative overflow-hidden text-white flex flex-col justify-center">
+            <div class="relative z-10">
+                <p class="flex items-center gap-2 text-rekas-green font-bold text-xs tracking-widest uppercase mb-4">
+                    <i class="fas fa-exclamation-circle"></i> Total Tunggakan Aktif
+                </p>
+                <h2 class="text-6xl font-bold mb-4 tracking-tighter">Rp 1.443.600</h2>
+                <p class="text-slate-400 text-sm">Mencakup <span class="text-white font-bold">1 Tagihan</span> dari
+                    seluruh objek Anda.</p>
+            </div>
+            <!-- Abstrack Background -->
+            <div class="absolute right-0 top-0 h-full w-1/2 bg-gradient-to-l from-slate-700/20 to-transparent"></div>
+        </section>
+
+        <!-- Filter & Search -->
+        <div class="flex gap-4 mb-10">
+            <div class="relative flex-1">
+                <i class="fas fa-search absolute left-6 top-1/2 -translate-y-1/2 text-slate-300"></i>
+                <input type="text" placeholder="Cari nama toko, rumah, atau nomor SKRD..."
+                    class="w-full pl-14 pr-6 py-4 bg-white border border-slate-100 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-rekas-green/20 transition">
+            </div>
+            <button
+                class="bg-white text-slate-600 font-bold px-8 py-4 rounded-full border border-slate-100 shadow-sm flex items-center gap-3 hover:bg-slate-50 transition uppercase text-xs tracking-widest">
+                <i class="fas fa-filter"></i> Filter Objek
+            </button>
+        </div>
+
+        <!-- Billing List -->
+        <h4 class="text-xs font-black text-slate-400 tracking-[0.2em] uppercase mb-6 px-4">Daftar Tagihan Terbit</h4>
+
+        <div class="space-y-4 mb-12">
+            <!-- Billing Card -->
+            <div class="bg-white rounded-[2rem] border border-slate-100 shadow-sm overflow-hidden flex relative">
+                <div class="w-2 bg-red-500"></div>
+                <div class="p-8 flex-1 flex flex-wrap items-center justify-between gap-6">
+                    <div class="flex items-center gap-6">
+                        <div
+                            class="h-16 w-16 rounded-2xl bg-green-50 text-rekas-green flex items-center justify-center text-2xl">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <div>
+                            <p class="text-[10px] font-bold text-slate-300 tracking-widest uppercase mb-1">Objek
+                                Retribusi:</p>
+                            <h5 class="text-xl font-bold text-slate-800 mb-1 uppercase tracking-tight">Rumah Yoga</h5>
+                            <p class="text-xs text-slate-400 font-medium">
+                                <span class="uppercase tracking-widest mr-2"><i class="fas fa-map-marker-alt"></i>
+                                    Babakan Madang</span> •
+                                <span class="text-rekas-green font-bold ml-2">NPOR: NPOR-2026-000001</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="text-center md:text-left px-8 border-x border-slate-50">
+                        <p class="text-[10px] font-bold text-slate-300 tracking-widest uppercase mb-1">Masa Pajak:</p>
+                        <p class="text-lg font-black text-slate-700 italic">APRIL 2026</p>
+                        <p class="text-[10px] text-slate-400 font-mono">SKRD/2026/04/5254B</p>
+                    </div>
+
+                    <div class="text-right">
+                        <p class="text-[10px] font-bold text-red-400 tracking-widest uppercase mb-1">Total Tagihan:</p>
+                        <p class="text-2xl font-black text-slate-800 mb-3">Rp 1.443.600</p>
+                        <div class="flex items-center justify-end gap-3">
+                            <button
+                                class="h-10 w-10 rounded-full border border-slate-100 text-slate-400 hover:bg-slate-50 transition">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button
+                                class="bg-rekas-green text-white font-bold px-8 py-2.5 rounded-full shadow-lg shadow-green-100 hover:scale-105 transition flex items-center gap-2 text-sm uppercase">
+                                Bayar <i class="fas fa-arrow-right text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Deadline Badge -->
+                <div class="absolute bottom-4 left-10">
+                    <p class="text-[10px] font-bold text-slate-400 uppercase italic">
+                        <i class="far fa-calendar-alt mr-1"></i> Batas Akhir Pembayaran: <span class="text-red-500">8
+                            Mei 2026</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Info Box -->
+        <div class="bg-blue-50/50 border border-blue-100 rounded-3xl p-6 flex items-start gap-4">
+            <div
+                class="h-10 w-10 rounded-full bg-white border border-blue-100 text-dki-blue flex items-center justify-center shrink-0 shadow-sm">
+                <i class="fas fa-info text-sm"></i>
+            </div>
+            <div>
+                <h6 class="text-xs font-black text-dki-blue tracking-widest uppercase mb-1 italic">Informasi Penagihan
+                </h6>
+                <p class="text-xs text-slate-500 leading-relaxed">
+                    Daftar ini mencakup seluruh aset/objek retribusi yang terdaftar atas nama Anda. Jika terdapat
+                    ketidaksesuaian data objek, silakan ajukan perubahan melalui menu <a href="#"
+                        class="text-dki-blue font-bold underline">Layanan Mandiri</a>.
+                </p>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
