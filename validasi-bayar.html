@@ -6,10 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Validasi Pembayaran - REKAS DKI Jakarta</title>
 
+    <!-- Bootstrap 5 (Hanya untuk Carousel) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <!-- Google Fonts & Font Awesome -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <!-- Tailwind CSS -->
@@ -31,143 +35,277 @@
             }
         }
     </script>
+
+    <style>
+        /* Reset gaya agar tidak konflik dengan Bootstrap */
+        a {
+            text-decoration: none !important;
+        }
+
+        /* Sidebar Scroll Fix agar tombol logout tidak terpotong */
+        .sidebar-nav {
+            scrollbar-width: thin;
+            scrollbar-color: #cbd5e1 transparent;
+        }
+
+        /* HERO BANNER STYLE (Adaptasi Ukuran Admin - PNG Format) */
+        .hero-banner {
+            border-radius: 1.5rem;
+            overflow: hidden;
+            height: 300px;
+            position: relative;
+        }
+
+        .hero-banner .carousel-item {
+            height: 300px;
+        }
+
+        .hero-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.4);
+        }
+
+        .hero-overlay-text {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-left: 3rem;
+            z-index: 10;
+            color: white;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(4px);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 1rem;
+            width: fit-content;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #F7931E;
+            border-radius: 50%;
+        }
+    </style>
 </head>
 
 <body class="bg-light-gray flex font-sans text-dark-text">
 
     <!-- Sidebar -->
-    <aside class="w-64 bg-white h-screen flex flex-col shadow-lg fixed top-0 left-0">
-        <div class="flex items-center gap-4 p-5 border-b border-slate-200">
+    <aside class="w-64 bg-white h-screen flex flex-col shadow-lg fixed top-0 left-0 z-50">
+        <!-- Header Sidebar -->
+        <div class="flex items-center gap-4 p-5 border-b border-slate-200 shrink-0">
             <img src="img/logo-dki.png" alt="Logo DKI" class="h-10">
             <div>
-                <h3 class="font-bold text-dki-blue text-lg">DLH DKI</h3>
-                <p class="text-xs text-light-text tracking-wider">SISTEM MONITORING</p>
+                <h3 class="font-bold text-dki-blue text-lg leading-tight">DLH DKI</h3>
+                <p class="text-[10px] text-light-text font-bold tracking-widest uppercase">Sistem Monitoring</p>
             </div>
         </div>
-        <nav class="flex-grow p-4 space-y-2">
+
+        <!-- Navigasi Sidebar (Scrollable) -->
+        <nav class="flex-grow p-4 space-y-1 overflow-y-auto sidebar-nav">
+            <p class="text-[10px] font-bold text-slate-400 uppercase px-3 mb-2 tracking-widest">Menu Utama</p>
             <a href="dashboard.html"
-                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors"><span><i
-                        class="fa-solid fa-chart-pie w-5"></i></span>Dashboard DLH</a>
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors">
+                <i class="fa-solid fa-chart-pie w-5"></i> Dashboard DLH
+            </a>
             <a href="list-subjek.html"
-                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors"><span><i
-                        class="fa-solid fa-users w-5"></i></span>List Subjek</a>
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors">
+                <i class="fa-solid fa-users w-5"></i> List Subjek
+            </a>
             <a href="list-objek.html"
-                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors"><span><i
-                        class="fa-solid fa-building w-5"></i></span>List Objek</a>
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors">
+                <i class="fa-solid fa-building w-5"></i> List Objek
+            </a>
             <a href="list-skrd.html"
-                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors"><span><i
-                        class="fa-solid fa-file-invoice-dollar w-5"></i></span>List SKRD</a>
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors">
+                <i class="fa-solid fa-file-invoice-dollar w-5"></i> List SKRD
+            </a>
             <a href="ssrd-monitoring.html"
-                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors"><span><i
-                        class="fa-solid fa-magnifying-glass-dollar w-5"></i></span>SSRD Monitoring</a>
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors">
+                <i class="fa-solid fa-magnifying-glass-dollar w-5"></i> SSRD Monitoring
+            </a>
+
+            <p class="text-[10px] font-bold text-slate-400 uppercase px-3 mt-4 mb-2 tracking-widest">Operasional</p>
             <a href="manajemen-objek.html"
-                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors"><span><i
-                        class="fa-solid fa-tasks w-5"></i></span>Manajemen Objek</a>
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors">
+                <i class="fa-solid fa-tasks w-5"></i> Manajemen Objek
+            </a>
             <a href="pemeriksaan.html"
-                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors"><span><i
-                        class="fa-solid fa-clipboard-check w-5"></i></span>Pemeriksaan</a>
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors">
+                <i class="fa-solid fa-clipboard-check w-5"></i> Pemeriksaan
+            </a>
             <a href="validasi-bayar.html"
-                class="flex items-center gap-3 px-4 py-2.5 rounded-lg font-semibold bg-blue-50 text-dki-blue border-l-4 border-dki-blue transition-colors"><span><i
-                        class="fa-solid fa-check-to-slot w-5"></i></span>Validasi Bayar</a>
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg font-semibold bg-blue-50 text-dki-blue border-l-4 border-dki-blue transition-colors">
+                <i class="fa-solid fa-check-to-slot w-5"></i> Validasi Bayar
+            </a>
         </nav>
-        <div class="p-5 border-t border-slate-200 space-y-4">
-            <div class="flex items-center gap-3 p-2 bg-slate-50 rounded-lg">
+
+        <!-- Footer Sidebar (Fixed) -->
+        <div class="p-4 border-t border-slate-200 shrink-0 bg-white">
+            <div class="flex items-center gap-3 p-2 bg-slate-50 rounded-lg mb-3">
                 <span
                     class="flex items-center justify-center h-8 w-8 rounded-full bg-dki-orange text-white font-bold text-sm">T</span>
-                <p class="text-xs font-medium text-dark-text truncate">test.dinas@jakarta.go.id</p>
+                <div class="overflow-hidden">
+                    <p class="text-[10px] font-bold text-dark-text truncate leading-none">Test Dinas</p>
+                    <p class="text-[9px] text-light-text truncate">test.dinas@jakarta.go.id</p>
+                </div>
             </div>
             <div class="space-y-1">
-                <a href="#" class="flex items-center gap-3 text-sm text-light-text hover:text-dki-blue"><i
-                        class="fa-solid fa-gavel w-5 text-center"></i>Dasar Hukum</a>
-                <a href="index.html" class="flex items-center gap-3 text-sm text-red-500 font-bold hover:underline"><i
-                        class="fa-solid fa-arrow-right-from-bracket w-5 text-center"></i>Keluar</a>
+                <a href="#"
+                    class="flex items-center gap-3 px-3 py-1.5 text-xs text-light-text hover:text-dki-blue transition">
+                    <i class="fa-solid fa-gavel w-4"></i> Dasar Hukum</a>
+                <a href="index.html"
+                    class="flex items-center gap-3 px-3 py-2 text-xs text-red-600 font-bold hover:bg-red-50 rounded-lg transition">
+                    <i class="fa-solid fa-power-off w-4"></i> Keluar Sistem</a>
             </div>
         </div>
     </aside>
 
     <!-- Main Content -->
     <main class="ml-64 flex-1 p-8">
-        <header class="mb-8">
-            <h1 class="text-2xl font-bold text-dark-text uppercase">Validasi Pembayaran Mandiri</h1>
-            <p class="text-light-text">Konfirmasi bukti pembayaran yang diunggah oleh Wajib Retribusi.</p>
+        <header class="flex justify-between items-center mb-8">
+            <div>
+                <h1 class="text-2xl font-extrabold text-dark-text tracking-tight uppercase leading-none mb-1">Validasi
+                    Pembayaran Mandiri</h1>
+                <p class="text-light-text text-sm">Konfirmasi bukti transfer dan dokumen pembayaran dari Wajib
+                    Retribusi.</p>
+            </div>
         </header>
+
+        <!-- BANNER CAROUSEL (Custom for Validasi - PNG Format) -->
+        <section class="mb-8">
+            <div id="validasiCarousel" class="carousel slide carousel-fade hero-banner shadow-xl shadow-slate-200"
+                data-bs-ride="carousel">
+                <div class="carousel-inner h-full">
+                    <!-- Slide 1 -->
+                    <div class="carousel-item active" data-bs-interval="5000">
+                        <img src="img/dki-1.png" alt="DKI 1">
+                        <div class="hero-overlay-text">
+                            <div class="status-badge"><span class="status-dot"></span> Audit Bukti Pembayaran</div>
+                            <h3 class="text-3xl font-extrabold mb-2 uppercase tracking-tight">Verifikasi <span>Keaslian
+                                    Dokumen</span></h3>
+                            <p class="text-slate-200 max-w-xl text-sm leading-relaxed opacity-80">Pastikan setiap bukti
+                                transfer yang diunggah sesuai dengan nominal tagihan SKRD dan terverifikasi oleh mutasi
+                                bank sebelum dilakukan validasi sistem.</p>
+                        </div>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="carousel-item" data-bs-interval="5000">
+                        <img src="img/dki-2.png" alt="DKI 2">
+                        <div class="hero-overlay-text">
+                            <div class="status-badge"><span class="status-dot"></span> Ketepatan Data PAD</div>
+                            <h3 class="text-3xl font-extrabold mb-2 uppercase tracking-tight">Integritas <span>Data
+                                    Keuangan</span></h3>
+                            <p class="text-slate-200 max-w-xl text-sm leading-relaxed opacity-80">Proses validasi yang
+                                cepat dan akurat membantu mempercepat penerbitan SSRD sebagai bukti pelunasan bagi warga
+                                DKI Jakarta.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- Filter Tabs -->
         <div class="flex gap-4 mb-6 border-b border-slate-200">
-            <button class="px-6 py-3 text-sm font-bold border-b-2 border-dki-blue text-dki-blue">Menunggu Validasi
-                (2)</button>
-            <button class="px-6 py-3 text-sm font-semibold text-light-text hover:text-dark-text transition">Sudah
+            <button
+                class="px-6 py-3 text-xs font-black border-b-2 border-dki-blue text-dki-blue uppercase tracking-widest">Menunggu
+                Validasi (2)</button>
+            <button
+                class="px-6 py-3 text-xs font-bold text-light-text hover:text-dark-text transition uppercase tracking-widest">Sudah
                 Tervalidasi</button>
             <button
-                class="px-6 py-3 text-sm font-semibold text-light-text hover:text-dark-text transition">Ditolak</button>
+                class="px-6 py-3 text-xs font-bold text-light-text hover:text-dark-text transition uppercase tracking-widest">Ditolak</button>
         </div>
 
         <!-- Table Section -->
-        <section class="bg-white rounded-xl shadow-md overflow-hidden">
+        <section class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
             <div class="overflow-x-auto">
                 <table class="w-full text-sm text-left">
-                    <thead class="bg-slate-50 text-xs text-light-text uppercase">
+                    <thead class="bg-slate-50 text-[10px] text-light-text uppercase font-black">
                         <tr>
                             <th class="p-4">Subjek & Objek</th>
                             <th class="p-4">No. SKRD / Tagihan</th>
                             <th class="p-4">Tanggal Upload</th>
                             <th class="p-4">Bukti Bayar</th>
-                            <th class="p-4 text-center">Aksi</th>
+                            <th class="p-4 text-center">Aksi Operasional</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-slate-100">
+                    <tbody class="divide-y divide-slate-50">
                         <tr class="hover:bg-slate-50 transition-colors">
                             <td class="p-4">
-                                <div class="font-bold text-dark-text uppercase">Rumah Yoga</div>
-                                <div class="text-xs text-light-text font-medium uppercase">Kardi / 1.2203.2201</div>
+                                <div class="font-bold text-dark-text uppercase leading-tight italic">Rumah Yoga</div>
+                                <div class="text-[10px] text-slate-400 font-bold uppercase tracking-tighter mt-1">Kardi
+                                    / 1.2203.2201</div>
                             </td>
                             <td class="p-4">
-                                <div class="font-semibold text-dki-blue">SKRD/2026/04/5254B</div>
-                                <div class="font-bold text-dark-text">Rp 1,443,600</div>
+                                <div class="font-bold text-dki-blue leading-none">SKRD/2026/04/5254B</div>
+                                <div class="font-black text-dark-text mt-1 text-base">Rp 1,443,600</div>
                             </td>
-                            <td class="p-4 text-light-text">
-                                09 Apr 2026<br><span class="text-[10px] font-bold">10:30 WIB</span>
+                            <td class="p-4 text-slate-500 font-medium">
+                                09 Apr 2026<br><span class="text-[10px] font-black text-slate-400 tracking-widest">10:30
+                                    WIB</span>
                             </td>
                             <td class="p-4">
                                 <a href="#"
-                                    class="inline-flex items-center gap-2 text-dki-blue font-bold hover:underline">
+                                    class="inline-flex items-center gap-2 text-dki-blue font-black text-xs hover:underline uppercase tracking-tighter">
                                     <i class="fas fa-image text-lg"></i> Lihat Bukti
                                 </a>
                             </td>
                             <td class="p-4">
                                 <div class="flex gap-2 justify-center">
                                     <button
-                                        class="bg-dki-green text-white text-xs font-bold py-2 px-4 rounded-lg hover:bg-opacity-90 shadow-sm transition">Validasi</button>
+                                        class="bg-dki-green text-white text-[10px] font-black px-4 py-2 rounded-lg hover:bg-opacity-90 shadow-sm transition uppercase">Validasi</button>
                                     <button
-                                        class="bg-red-500 text-white text-xs font-bold py-2 px-4 rounded-lg hover:bg-opacity-90 shadow-sm transition">Tolak</button>
+                                        class="bg-red-500 text-white text-[10px] font-black px-4 py-2 rounded-lg hover:bg-opacity-90 shadow-sm transition uppercase">Tolak</button>
                                 </div>
                             </td>
                         </tr>
                         <tr class="hover:bg-slate-50 transition-colors">
                             <td class="p-4">
-                                <div class="font-bold text-dark-text uppercase">Warung Bu Siti</div>
-                                <div class="text-xs text-light-text font-medium uppercase">Siti Aminah / 1.2203.2280
+                                <div class="font-bold text-dark-text uppercase leading-tight italic">Warung Bu Siti
                                 </div>
+                                <div class="text-[10px] text-slate-400 font-bold uppercase tracking-tighter mt-1">Siti
+                                    Aminah / 1.2203.2280</div>
                             </td>
                             <td class="p-4">
-                                <div class="font-semibold text-dki-blue">SKRD/2026/04/KPLM01</div>
-                                <div class="font-bold text-dark-text">Rp 85,000</div>
+                                <div class="font-bold text-dki-blue leading-none">SKRD/2026/04/KPLM01</div>
+                                <div class="font-black text-dark-text mt-1 text-base">Rp 85,000</div>
                             </td>
-                            <td class="p-4 text-light-text">
-                                09 Apr 2026<br><span class="text-[10px] font-bold">09:15 WIB</span>
+                            <td class="p-4 text-slate-500 font-medium">
+                                09 Apr 2026<br><span class="text-[10px] font-black text-slate-400 tracking-widest">09:15
+                                    WIB</span>
                             </td>
                             <td class="p-4">
                                 <a href="#"
-                                    class="inline-flex items-center gap-2 text-dki-blue font-bold hover:underline">
+                                    class="inline-flex items-center gap-2 text-dki-blue font-black text-xs hover:underline uppercase tracking-tighter">
                                     <i class="fas fa-image text-lg"></i> Lihat Bukti
                                 </a>
                             </td>
                             <td class="p-4">
                                 <div class="flex gap-2 justify-center">
                                     <button
-                                        class="bg-dki-green text-white text-xs font-bold py-2 px-4 rounded-lg hover:bg-opacity-90 shadow-sm transition">Validasi</button>
+                                        class="bg-dki-green text-white text-[10px] font-black px-4 py-2 rounded-lg hover:bg-opacity-90 shadow-sm transition uppercase">Validasi</button>
                                     <button
-                                        class="bg-red-500 text-white text-xs font-bold py-2 px-4 rounded-lg hover:bg-opacity-90 shadow-sm transition">Tolak</button>
+                                        class="bg-red-500 text-white text-[10px] font-black px-4 py-2 rounded-lg hover:bg-opacity-90 shadow-sm transition uppercase">Tolak</button>
                                 </div>
                             </td>
                         </tr>
@@ -176,6 +314,9 @@
             </div>
         </section>
     </main>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

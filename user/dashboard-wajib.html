@@ -5,9 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Wajib Retribusi - REKAS</title>
+
+    <!-- Bootstrap 5 (Hanya untuk Carousel) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <script>
         tailwind.config = {
             theme: {
@@ -16,181 +21,285 @@
                     colors: {
                         'rekas-green': '#22C55E',
                         'dki-blue': '#005A9E',
+                        'dki-orange': '#F7931E',
                         'light-gray': '#F8F9FA',
-                        'dark-navy': '#111827',
+                        'dark-text': '#333333',
+                        'light-text': '#777777',
                     }
                 }
             }
         }
     </script>
+
+    <style>
+        /* CSS Reset untuk Bootstrap Conflict */
+        a {
+            text-decoration: none !important;
+        }
+
+        /* Sidebar Scroll Fix */
+        .sidebar-nav {
+            scrollbar-width: thin;
+            scrollbar-color: #cbd5e1 transparent;
+        }
+
+        /* HERO BANNER STYLE (Adaptasi Ukuran Admin - PNG Format) */
+        .hero-banner {
+            border-radius: 1.5rem;
+            overflow: hidden;
+            height: 300px;
+            position: relative;
+        }
+
+        .hero-banner .carousel-item {
+            height: 300px;
+        }
+
+        .hero-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.45);
+        }
+
+        .hero-overlay-text {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-left: 3rem;
+            z-index: 10;
+            color: white;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(4px);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 1rem;
+            width: fit-content;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #F7931E;
+            border-radius: 50%;
+        }
+    </style>
 </head>
 
-<body class="bg-light-gray flex font-sans text-slate-700">
+<body class="bg-light-gray flex font-sans text-dark-text">
 
-    <!-- Sidebar -->
-    <aside class="w-64 bg-white h-screen flex flex-col shadow-sm fixed top-0 left-0">
-        <div class="p-6">
-            <div class="flex items-center gap-3">
-                <div class="bg-rekas-green p-2 rounded-lg text-white">
-                    <i class="fas fa-leaf text-xl"></i>
-                </div>
-                <div>
-                    <h1 class="font-bold text-xl leading-none text-slate-800">REKAS</h1>
-                    <p class="text-[10px] font-bold text-slate-400 tracking-widest mt-1 uppercase">Wajib Retribusi</p>
-                </div>
+    <!-- Sidebar (Diselaraskan dengan Dinas) -->
+    <aside class="w-64 bg-white h-screen flex flex-col shadow-lg fixed top-0 left-0 z-50">
+        <!-- Header Sidebar -->
+        <div class="flex items-center gap-4 p-5 border-b border-slate-200 shrink-0">
+            <img src="../img/logo-dki.png" alt="Logo DKI" class="h-10">
+            <div>
+                <h3 class="font-bold text-rekas-green text-lg leading-tight">REKAS</h3>
+                <p class="text-[10px] text-light-text font-bold tracking-widest uppercase">Wajib Retribusi</p>
             </div>
         </div>
 
-        <nav class="flex-grow px-4 space-y-1">
+        <!-- Navigasi Sidebar (Scrollable) -->
+        <nav class="flex-grow p-4 space-y-1 overflow-y-auto sidebar-nav">
+            <p class="text-[10px] font-bold text-slate-400 uppercase px-3 mb-2 tracking-widest">Utama</p>
             <a href="dashboard-wajib.html"
-                class="flex items-center justify-between px-4 py-3 rounded-xl bg-rekas-green text-white font-semibold transition shadow-md shadow-green-100">
-                <span class="flex items-center gap-3"><i class="fa-solid fa-home w-5"></i> Dashboard</span>
-                <div class="w-1.5 h-1.5 bg-white rounded-full"></div>
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg font-semibold bg-green-50 text-rekas-green border-l-4 border-rekas-green transition-colors">
+                <i class="fa-solid fa-home w-5"></i> Dashboard
             </a>
+
+            <p class="text-[10px] font-bold text-slate-400 uppercase px-3 mt-4 mb-2 tracking-widest">Layanan Saya</p>
             <a href="tagihan-skrd-wajib.html"
-                class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 font-medium hover:bg-slate-50 transition">
-                <i class="fa-solid fa-file-invoice w-5 text-center"></i> Tagihan SKRD
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-green-50 hover:text-rekas-green border-l-4 border-transparent transition-colors">
+                <i class="fa-solid fa-file-invoice w-5"></i> Tagihan SKRD
             </a>
             <a href="bukti-ssrd-wajib.html"
-                class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 font-medium hover:bg-slate-50 transition">
-                <i class="fa-solid fa-receipt w-5 text-center"></i> Bukti SSRD
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-green-50 hover:text-rekas-green border-l-4 border-transparent transition-colors">
+                <i class="fa-solid fa-receipt w-5"></i> Bukti SSRD
             </a>
             <a href="layanan-pembayaran-wajib.html"
-                class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 font-medium hover:bg-slate-50 transition">
-                <i class="fa-solid fa-hand-holding-heart w-5 text-center"></i> Layanan
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-green-50 hover:text-rekas-green border-l-4 border-transparent transition-colors">
+                <i class="fa-solid fa-hand-holding-heart w-5"></i> Layanan Online
             </a>
             <a href="ubah-password-wajib.html"
-                class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 font-medium hover:bg-slate-50 transition">
-                <i class="fa-solid fa-key w-5 text-center"></i> Ubah Password
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-green-50 hover:text-rekas-green border-l-4 border-transparent transition-colors">
+                <i class="fa-solid fa-key w-5"></i> Ubah Password
             </a>
         </nav>
 
-        <div class="p-4 border-t border-slate-100">
-            <div class="bg-slate-50 rounded-2xl p-4 flex items-center gap-3 mb-4">
-                <div
-                    class="h-10 w-10 rounded-full bg-green-100 text-rekas-green flex items-center justify-center font-bold">
-                    U</div>
-                <div>
-                    <p class="text-sm font-bold text-slate-800">User</p>
-                    <p class="text-[10px] text-rekas-green font-bold">USER</p>
+        <!-- Footer Sidebar (Fixed/Sticky) -->
+        <div class="p-4 border-t border-slate-200 shrink-0 bg-white">
+            <div class="flex items-center gap-3 p-2 bg-slate-50 rounded-lg mb-3">
+                <span
+                    class="flex items-center justify-center h-8 w-8 rounded-full bg-rekas-green text-white font-bold text-sm">K</span>
+                <div class="overflow-hidden">
+                    <p class="text-[10px] font-bold text-dark-text truncate leading-none">Kardi</p>
+                    <p class="text-[9px] text-light-text truncate">1.2203.2201</p>
                 </div>
             </div>
             <div class="space-y-1">
-                <a href="#" class="flex items-center gap-3 px-4 py-2 text-sm text-slate-500 hover:text-slate-800"><i
-                        class="fa-solid fa-book w-4 text-center"></i> Dasar Hukum</a>
+                <a href="#"
+                    class="flex items-center gap-3 px-3 py-1.5 text-xs text-light-text hover:text-rekas-green transition">
+                    <i class="fa-solid fa-book w-4"></i> Dasar Hukum</a>
                 <a href="../index.html"
-                    class="flex items-center gap-3 px-4 py-2 text-sm text-red-500 font-bold hover:bg-red-50 rounded-lg"><i
-                        class="fa-solid fa-right-from-bracket w-4 text-center"></i> Keluar</a>
+                    class="flex items-center gap-3 px-3 py-2 text-xs text-red-600 font-bold hover:bg-red-50 rounded-lg transition">
+                    <i class="fa-solid fa-power-off w-4"></i> Keluar</a>
             </div>
         </div>
     </aside>
 
     <!-- Main Content -->
-    <main class="ml-64 flex-1 p-10">
+    <main class="ml-64 flex-1 p-8">
+
         <!-- Welcome Section -->
         <section
-            class="bg-white border border-slate-100 rounded-[2rem] p-10 mb-8 relative overflow-hidden flex justify-between items-center">
+            class="bg-white border border-slate-100 rounded-2xl p-8 mb-8 relative overflow-hidden flex justify-between items-center shadow-sm">
             <div class="relative z-10">
-                <p class="text-rekas-green font-bold text-sm tracking-widest uppercase mb-2">Selamat Datang di Rekas,
+                <p class="text-rekas-green font-bold text-xs tracking-widest uppercase mb-1">Selamat Datang di Rekas,
                 </p>
-                <h2 class="text-4xl font-bold text-slate-800 mb-2 tracking-tight">KARDI</h2>
-                <p class="text-slate-400 text-sm">NPWRD: <span class="font-semibold text-slate-600">1.2203.2201</span> •
-                    Member sejak 2026</p>
+                <h2 class="text-2xl font-extrabold text-dark-text tracking-tight uppercase">KARDI</h2>
+                <p class="text-slate-400 text-xs font-medium">NPWRD: <span
+                        class="text-dark-text font-bold">1.2203.2201</span> • Member sejak 2026</p>
             </div>
             <button
-                class="bg-slate-50 text-slate-800 font-bold px-8 py-3 rounded-full border border-slate-200 hover:bg-white transition relative z-10">
-                PROFIL AKUN
+                class="bg-slate-50 text-dark-text font-bold px-5 py-2 rounded-xl border border-slate-200 hover:bg-white transition relative z-10 text-[10px] uppercase tracking-widest">
+                Profil Akun
             </button>
-            <!-- Background Decoration -->
             <div class="absolute right-0 top-0 opacity-5">
-                <i class="fas fa-check-circle text-[12rem]"></i>
+                <i class="fas fa-check-circle text-[10rem]"></i>
             </div>
         </section>
 
-        <!-- Aset Section Header -->
+        <!-- BANNER ADAPTASI UKURAN (Sesuai Referensi Admin - PNG) -->
+        <section class="mb-8">
+            <div id="bannerCarousel" class="carousel slide carousel-fade hero-banner shadow-xl shadow-slate-200"
+                data-bs-ride="carousel">
+                <div class="carousel-inner h-full">
+                    <!-- Slide 1 -->
+                    <div class="carousel-item active" data-bs-interval="5000">
+                        <img src="../img/dki-1.png" alt="Slide 1">
+                        <div class="hero-overlay-text">
+                            <div class="status-badge"><span class="status-dot"></span> System Online & Secure</div>
+                            <h3 class="text-3xl font-extrabold mb-2 uppercase tracking-tight">Jakarta Sadar
+                                <span>Sampah</span></h3>
+                            <p class="text-slate-200 max-w-xl text-sm leading-relaxed opacity-80">Kontribusi retribusi
+                                Anda membantu mewujudkan lingkungan Jakarta yang lebih bersih, hijau, dan berkelanjutan.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="carousel-item" data-bs-interval="5000">
+                        <img src="../img/dki-2.png" alt="Slide 2">
+                        <div class="hero-overlay-text">
+                            <div class="status-badge"><span class="status-dot"></span> Kemudahan Pembayaran</div>
+                            <h3 class="text-3xl font-extrabold mb-2 uppercase tracking-tight">Bayar Retribusi
+                                <span>Instan</span></h3>
+                            <p class="text-slate-200 max-w-xl text-sm leading-relaxed opacity-80">Gunakan QRIS atau
+                                Virtual Account Bank DKI untuk pelunasan tagihan retribusi yang lebih praktis.</p>
+                        </div>
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="carousel-item" data-bs-interval="5000">
+                        <img src="../img/dki-3.png" alt="Slide 3">
+                        <div class="hero-overlay-text">
+                            <div class="status-badge"><span class="status-dot"></span> Layanan Mandiri</div>
+                            <h3 class="text-3xl font-extrabold mb-2 uppercase tracking-tight">Manajemen <span>Aset
+                                    Objek</span></h3>
+                            <p class="text-slate-200 max-w-xl text-sm leading-relaxed opacity-80">Pantau seluruh aset
+                                objek retribusi Anda dalam satu pintu melalui dashboard monitoring REKAS.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Daftar Aset -->
         <div class="flex justify-between items-center mb-6 px-2">
-            <h3 class="text-xl font-bold text-slate-800 flex items-center gap-3">
-                <i class="fas fa-building text-rekas-green"></i> DAFTAR ASET OBJEK
+            <h3 class="text-lg font-extrabold text-dark-text flex items-center gap-3 uppercase tracking-tight">
+                <i class="fas fa-building text-rekas-green"></i> Daftar Aset Objek
             </h3>
-            <button class="text-rekas-green font-bold text-sm hover:underline flex items-center gap-2">
-                <i class="fas fa-plus"></i> TAMBAH OBJEK BARU
+            <button
+                class="text-rekas-green font-black text-[10px] hover:underline flex items-center gap-2 uppercase tracking-widest">
+                <i class="fas fa-plus-circle"></i> Tambah Objek Baru
             </button>
         </div>
 
-        <!-- Aset Cards Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <!-- Card 1 -->
             <div
-                class="bg-white rounded-[2rem] border border-slate-100 shadow-sm overflow-hidden group hover:shadow-xl transition-all duration-300">
+                class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden group hover:shadow-xl transition-all duration-300">
                 <div class="p-8">
                     <div class="flex justify-between items-start mb-6">
                         <div
-                            class="h-14 w-14 rounded-2xl bg-purple-50 text-purple-500 flex items-center justify-center text-2xl transition group-hover:scale-110">
+                            class="h-12 w-12 rounded-xl bg-green-50 text-rekas-green flex items-center justify-center text-xl group-hover:scale-110 transition shadow-sm">
                             <i class="fas fa-store"></i>
                         </div>
                         <span
-                            class="bg-green-50 text-rekas-green text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">Aktif</span>
+                            class="bg-green-100 text-rekas-green text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-widest">Terverifikasi</span>
                     </div>
-                    <div class="mb-6">
-                        <p class="text-[10px] font-bold text-slate-400 tracking-widest uppercase mb-1">NPOR ID</p>
-                        <p class="text-lg font-bold text-rekas-green">NPOR-2026-000002</p>
+                    <div class="mb-4">
+                        <p class="text-[9px] font-black text-slate-400 tracking-widest uppercase mb-1">NPOR ID</p>
+                        <p class="text-base font-bold text-rekas-green">NPOR-2026-000002</p>
                     </div>
                     <div>
-                        <h4 class="text-xl font-bold text-slate-800 mb-1">TOKO AHMAD</h4>
-                        <p class="text-slate-400 text-sm flex items-center gap-2"><i class="fas fa-map-marker-alt"></i>
+                        <h4 class="text-xl font-extrabold text-dark-text uppercase italic">TOKO AHMAD</h4>
+                        <p class="text-slate-400 text-xs flex items-center gap-2"><i class="fas fa-map-marker-alt"></i>
                             Jl. Yogapelan 3</p>
                     </div>
                 </div>
-                <button
-                    class="w-full py-4 bg-slate-50 border-t border-slate-100 text-slate-600 font-bold text-sm hover:bg-rekas-green hover:text-white transition-all flex items-center justify-center gap-2">
-                    <i class="fas fa-file-invoice"></i> TAGIHAN
-                </button>
+                <a href="tagihan-skrd-wajib.html"
+                    class="w-full py-4 bg-slate-50 border-t border-slate-100 text-slate-500 font-black text-[10px] hover:bg-rekas-green hover:text-white transition-all flex items-center justify-center gap-2 uppercase tracking-widest">
+                    <i class="fas fa-file-invoice-dollar"></i> Lihat Tagihan
+                </a>
             </div>
 
             <!-- Card 2 -->
             <div
-                class="bg-white rounded-[2rem] border border-slate-100 shadow-sm overflow-hidden group hover:shadow-xl transition-all duration-300">
+                class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden group hover:shadow-xl transition-all duration-300">
                 <div class="p-8">
                     <div class="flex justify-between items-start mb-6">
                         <div
-                            class="h-14 w-14 rounded-2xl bg-blue-50 text-blue-500 flex items-center justify-center text-2xl transition group-hover:scale-110">
+                            class="h-12 w-12 rounded-xl bg-blue-50 text-blue-500 flex items-center justify-center text-xl group-hover:scale-110 transition shadow-sm">
                             <i class="fas fa-home"></i>
                         </div>
                         <span
-                            class="bg-green-50 text-rekas-green text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">Aktif</span>
+                            class="bg-green-100 text-rekas-green text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-widest">Terverifikasi</span>
                     </div>
-                    <div class="mb-6">
-                        <p class="text-[10px] font-bold text-slate-400 tracking-widest uppercase mb-1">NPOR ID</p>
-                        <p class="text-lg font-bold text-rekas-green">NPOR-2026-000001</p>
+                    <div class="mb-4">
+                        <p class="text-[9px] font-black text-slate-400 tracking-widest uppercase mb-1">NPOR ID</p>
+                        <p class="text-base font-bold text-rekas-green">NPOR-2026-000001</p>
                     </div>
                     <div>
-                        <h4 class="text-xl font-bold text-slate-800 mb-1">RUMAH YOGA</h4>
-                        <p class="text-slate-400 text-sm flex items-center gap-2"><i class="fas fa-map-marker-alt"></i>
+                        <h4 class="text-xl font-extrabold text-dark-text uppercase italic">RUMAH YOGA</h4>
+                        <p class="text-slate-400 text-xs flex items-center gap-2"><i class="fas fa-map-marker-alt"></i>
                             Jl. Yogapelan 3</p>
                     </div>
                 </div>
-                <button
-                    class="w-full py-4 bg-slate-50 border-t border-slate-100 text-slate-600 font-bold text-sm hover:bg-rekas-green hover:text-white transition-all flex items-center justify-center gap-2">
-                    <i class="fas fa-file-invoice"></i> TAGIHAN
-                </button>
+                <a href="tagihan-skrd-wajib.html"
+                    class="w-full py-4 bg-slate-50 border-t border-slate-100 text-slate-500 font-black text-[10px] hover:bg-rekas-green hover:text-white transition-all flex items-center justify-center gap-2 uppercase tracking-widest">
+                    <i class="fas fa-file-invoice-dollar"></i> Lihat Tagihan
+                </a>
             </div>
-        </div>
-
-        <!-- Help Banner -->
-        <div
-            class="bg-dki-blue rounded-[2rem] p-10 flex flex-col md:flex-row justify-between items-center text-white relative overflow-hidden">
-            <div class="relative z-10">
-                <h3 class="text-2xl font-bold italic mb-2 uppercase">Butuh Bantuan Pendaftaran?</h3>
-                <p class="text-blue-100 text-sm">Tim kami siap membantu verifikasi dan pendaftaran objek baru Anda.</p>
-            </div>
-            <button
-                class="mt-6 md:mt-0 bg-white text-dki-blue font-bold px-8 py-3 rounded-full shadow-lg hover:scale-105 transition-all relative z-10 uppercase text-sm">
-                Hubungi Customer Service
-            </button>
-            <!-- Background Shape -->
-            <div class="absolute -right-10 -bottom-10 h-40 w-40 bg-white opacity-10 rounded-full"></div>
         </div>
     </main>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

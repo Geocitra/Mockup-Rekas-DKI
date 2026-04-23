@@ -5,10 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bukti SSRD - REKAS</title>
+
+    <!-- Bootstrap 5 (Hanya untuk Carousel) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <script>
         tailwind.config = {
             theme: {
@@ -16,156 +20,290 @@
                     fontFamily: { sans: ['Poppins', 'sans-serif'] },
                     colors: {
                         'rekas-green': '#22C55E',
-                        'dark-navy': '#111827',
+                        'dki-blue': '#005A9E',
+                        'dki-orange': '#F7931E',
                         'light-gray': '#F8F9FA',
+                        'dark-text': '#333333',
+                        'light-text': '#777777',
+                        'dark-navy': '#111827',
                     }
                 }
             }
         }
     </script>
+
+    <style>
+        /* CSS Reset untuk Bootstrap Conflict */
+        a {
+            text-decoration: none !important;
+        }
+
+        /* Sidebar Scroll Fix */
+        .sidebar-nav {
+            scrollbar-width: thin;
+            scrollbar-color: #cbd5e1 transparent;
+        }
+
+        /* HERO BANNER STYLE (Adaptasi Ukuran 300px - PNG) */
+        .hero-banner {
+            border-radius: 1.5rem;
+            overflow: hidden;
+            height: 300px;
+            position: relative;
+        }
+
+        .hero-banner .carousel-item {
+            height: 300px;
+        }
+
+        .hero-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.45);
+        }
+
+        .hero-overlay-text {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-left: 3rem;
+            z-index: 10;
+            color: white;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(4px);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 1rem;
+            width: fit-content;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #F7931E;
+            border-radius: 50%;
+        }
+    </style>
 </head>
 
-<body class="bg-light-gray flex font-sans text-slate-700">
+<body class="bg-light-gray flex font-sans text-dark-text">
 
-    <!-- Sidebar (Identik) -->
-    <aside class="w-64 bg-white h-screen flex flex-col shadow-sm fixed top-0 left-0">
-        <div class="p-6">
-            <div class="flex items-center gap-3">
-                <div class="bg-rekas-green p-2 rounded-lg text-white"><i class="fas fa-leaf text-xl"></i></div>
-                <div>
-                    <h1 class="font-bold text-xl leading-none text-slate-800">REKAS</h1>
-                    <p class="text-[10px] font-bold text-slate-400 tracking-widest mt-1 uppercase">Wajib Retribusi</p>
-                </div>
+    <!-- Sidebar (Diselaraskan dengan Dinas) -->
+    <aside class="w-64 bg-white h-screen flex flex-col shadow-lg fixed top-0 left-0 z-50">
+        <!-- Header Sidebar -->
+        <div class="flex items-center gap-4 p-5 border-b border-slate-200 shrink-0">
+            <img src="../img/logo-dki.png" alt="Logo DKI" class="h-10">
+            <div>
+                <h3 class="font-bold text-rekas-green text-lg leading-tight">REKAS</h3>
+                <p class="text-[10px] text-light-text font-bold tracking-widest uppercase">Wajib Retribusi</p>
             </div>
         </div>
-        <nav class="flex-grow px-4 space-y-1">
+
+        <!-- Navigasi Sidebar (Scrollable Area) -->
+        <nav class="flex-grow p-4 space-y-1 overflow-y-auto sidebar-nav">
+            <p class="text-[10px] font-bold text-slate-400 uppercase px-3 mb-2 tracking-widest">Utama</p>
             <a href="dashboard-wajib.html"
-                class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 font-medium hover:bg-slate-50 transition">
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-green-50 hover:text-rekas-green border-l-4 border-transparent transition-colors">
                 <i class="fa-solid fa-home w-5 text-center"></i> Dashboard
             </a>
+
+            <p class="text-[10px] font-bold text-slate-400 uppercase px-3 mt-4 mb-2 tracking-widest">Layanan Saya</p>
             <a href="tagihan-skrd-wajib.html"
-                class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 font-medium hover:bg-slate-50 transition">
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-green-50 hover:text-rekas-green border-l-4 border-transparent transition-colors">
                 <i class="fa-solid fa-file-invoice w-5 text-center"></i> Tagihan SKRD
             </a>
             <a href="bukti-ssrd-wajib.html"
-                class="flex items-center justify-between px-4 py-3 rounded-xl bg-rekas-green text-white font-semibold shadow-md shadow-green-100">
-                <span class="flex items-center gap-3"><i class="fa-solid fa-receipt w-5"></i> Bukti SSRD</span>
-                <div class="w-1.5 h-1.5 bg-white rounded-full"></div>
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg font-semibold bg-green-50 text-rekas-green border-l-4 border-rekas-green transition-colors">
+                <i class="fa-solid fa-receipt w-5 text-center"></i> Bukti SSRD
             </a>
             <a href="layanan-pembayaran-wajib.html"
-                class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 font-medium hover:bg-slate-50 transition">
-                <i class="fa-solid fa-hand-holding-heart w-5 text-center"></i> Layanan
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-green-50 hover:text-rekas-green border-l-4 border-transparent transition-colors">
+                <i class="fa-solid fa-hand-holding-heart w-5 text-center"></i> Layanan Online
             </a>
             <a href="ubah-password-wajib.html"
-                class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 font-medium hover:bg-slate-50 transition">
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-green-50 hover:text-rekas-green border-l-4 border-transparent transition-colors">
                 <i class="fa-solid fa-key w-5 text-center"></i> Ubah Password
             </a>
         </nav>
-        <!-- Footer Sidebar (Sama seperti dashboard) -->
-        <div class="p-4 border-t border-slate-100">
-            <div class="bg-slate-50 rounded-2xl p-4 flex items-center gap-3 mb-4">
-                <div
-                    class="h-10 w-10 rounded-full bg-green-100 text-rekas-green flex items-center justify-center font-bold">
-                    U</div>
-                <div>
-                    <p class="text-sm font-bold text-slate-800">User</p>
-                    <p class="text-[10px] text-rekas-green font-bold">USER</p>
+
+        <!-- Footer Sidebar (Fixed/Sticky) -->
+        <div class="p-4 border-t border-slate-200 shrink-0 bg-white">
+            <div class="flex items-center gap-3 p-2 bg-slate-50 rounded-lg mb-3">
+                <span
+                    class="flex items-center justify-center h-8 w-8 rounded-full bg-rekas-green text-white font-bold text-sm">K</span>
+                <div class="overflow-hidden">
+                    <p class="text-[10px] font-bold text-dark-text truncate leading-none">Kardi</p>
+                    <p class="text-[9px] text-light-text truncate">1.2203.2201</p>
                 </div>
             </div>
-            <a href="#"
-                class="flex items-center gap-3 px-4 py-2 text-sm text-red-500 font-bold hover:bg-red-50 rounded-lg"><i
-                    class="fa-solid fa-right-from-bracket w-4"></i> Keluar</a>
+            <div class="space-y-1">
+                <a href="#"
+                    class="flex items-center gap-3 px-3 py-1.5 text-xs text-light-text hover:text-rekas-green transition">
+                    <i class="fa-solid fa-book w-4"></i> Dasar Hukum</a>
+                <a href="../index.html"
+                    class="flex items-center gap-3 px-3 py-2 text-xs text-red-600 font-bold hover:bg-red-50 rounded-lg transition">
+                    <i class="fa-solid fa-power-off w-4"></i> Keluar</a>
+            </div>
         </div>
     </aside>
 
     <!-- Main Content -->
     <main class="ml-64 flex-1 p-10">
-        <header class="mb-10">
-            <h1 class="text-3xl font-black text-dark-navy tracking-tight">Monitoring SSRD</h1>
-            <p class="text-slate-400 font-medium">Monitoring penerbitan SSRD.</p>
+        <header class="mb-8">
+            <h1 class="text-3xl font-black text-dark-navy tracking-tight uppercase italic">Monitoring <span
+                    class="text-rekas-green">SSRD</span></h1>
+            <p class="text-light-text font-medium text-sm">Riwayat pelunasan dan arsip bukti pembayaran retribusi
+                digital Anda.</p>
         </header>
+
+        <!-- BANNER CAROUSEL (Custom for SSRD - PNG) -->
+        <section class="mb-10">
+            <div id="ssrdCarousel" class="carousel slide carousel-fade hero-banner shadow-xl shadow-slate-200"
+                data-bs-ride="carousel">
+                <div class="carousel-inner h-full">
+                    <!-- Slide 1 -->
+                    <div class="carousel-item active" data-bs-interval="5000">
+                        <img src="../img/dki-3.png" alt="Arsip SSRD">
+                        <div class="hero-overlay-text">
+                            <div class="status-badge"><span class="status-dot"></span> Arsip Bukti Bayar Sah</div>
+                            <h3 class="text-3xl font-extrabold mb-2 uppercase tracking-tight">Surat Setoran
+                                <span>Retribusi Daerah</span></h3>
+                            <p class="text-slate-200 max-w-xl text-sm leading-relaxed opacity-80">Seluruh transaksi yang
+                                telah divalidasi oleh Bendahara akan muncul di sini sebagai bukti pelunasan yang sah dan
+                                dapat diunduh kapan saja.</p>
+                        </div>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="carousel-item" data-bs-interval="5000">
+                        <img src="../img/dki-1.png" alt="Jakarta Bersih">
+                        <div class="hero-overlay-text">
+                            <div class="status-badge"><span class="status-dot"></span> Kontribusi Warga Jakarta</div>
+                            <h3 class="text-3xl font-extrabold mb-2 uppercase tracking-tight">Transparansi
+                                <span>Pelayanan Publik</span></h3>
+                            <p class="text-slate-200 max-w-xl text-sm leading-relaxed opacity-80">Terima kasih telah
+                                berkontribusi dalam menjaga kebersihan lingkungan Jakarta melalui pembayaran retribusi
+                                yang tepat waktu.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- Search Bar -->
         <div class="relative mb-10">
             <i class="fas fa-search absolute left-6 top-1/2 -translate-y-1/2 text-slate-300"></i>
-            <input type="text" placeholder="Cari No. SKRD / SSRD..."
-                class="w-full pl-14 pr-6 py-4 bg-white border border-slate-100 rounded-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-rekas-green/20 transition text-sm">
+            <input type="text" placeholder="Cari berdasarkan Nomor SKRD atau Nomor SSRD..."
+                class="w-full pl-14 pr-6 py-4 bg-white border border-slate-100 rounded-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-rekas-green/20 transition text-sm font-medium">
         </div>
 
         <!-- Table Content -->
-        <div class="bg-white rounded-[2.5rem] shadow-sm border border-slate-100 overflow-hidden">
-            <table class="w-full text-left">
-                <thead class="bg-slate-50/50 border-b border-slate-50">
-                    <tr>
-                        <th class="px-8 py-6 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Objek
-                            Retribusi</th>
-                        <th class="px-8 py-6 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">No. SKRD
-                            / Nominal</th>
-                        <th
-                            class="px-8 py-6 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] text-center">
-                            Poin Digunakan</th>
-                        <th
-                            class="px-8 py-6 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] text-center">
-                            Tgl Bayar</th>
-                        <th
-                            class="px-8 py-6 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] text-center">
-                            Status</th>
-                        <th
-                            class="px-8 py-6 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] text-center">
-                            Aksi</th>
-                    </tr>
-                </thead>
-                <tbody class="divide-y divide-slate-50">
-                    <!-- Row 1 -->
-                    <tr class="hover:bg-slate-50/50 transition">
-                        <td class="px-8 py-6">
-                            <p class="font-bold text-slate-800">Toko Ahmad</p>
-                            <p class="text-[10px] font-bold text-rekas-green uppercase">NPOR-2026-000002</p>
-                        </td>
-                        <td class="px-8 py-6">
-                            <p class="text-[11px] font-bold text-slate-400 font-mono">SKRD/2026/04/IG8CJ</p>
-                            <p class="text-lg font-black text-dark-navy tracking-tight">Rp 1,422,560</p>
-                        </td>
-                        <td class="px-8 py-6 text-center font-black text-blue-500 text-sm">0</td>
-                        <td class="px-8 py-6 text-center text-sm font-medium text-slate-400">2026-04-08</td>
-                        <td class="px-8 py-6 text-center">
-                            <span
-                                class="bg-green-100 text-rekas-green text-[10px] font-black px-4 py-1.5 rounded-lg uppercase tracking-widest">Paid</span>
-                        </td>
-                        <td class="px-8 py-6 text-center">
-                            <button
-                                class="bg-dark-navy text-white text-[10px] font-bold px-5 py-2.5 rounded-xl flex items-center gap-2 mx-auto hover:bg-slate-800 transition uppercase tracking-wider">
-                                <i class="fas fa-file-alt"></i> Lihat SSRD
-                            </button>
-                        </td>
-                    </tr>
-                    <!-- Row 2 -->
-                    <tr class="hover:bg-slate-50/50 transition">
-                        <td class="px-8 py-6">
-                            <p class="font-bold text-slate-800">Toko Ahmad</p>
-                            <p class="text-[10px] font-bold text-rekas-green uppercase">NPOR-2026-000002</p>
-                        </td>
-                        <td class="px-8 py-6">
-                            <p class="text-[11px] font-bold text-slate-400 font-mono">SKRD/2026/04/VXTYQ</p>
-                            <p class="text-lg font-black text-dark-navy tracking-tight">Rp 636,500</p>
-                        </td>
-                        <td class="px-8 py-6 text-center font-black text-blue-500 text-sm">0</td>
-                        <td class="px-8 py-6 text-center text-sm font-medium text-slate-400">2026-04-07</td>
-                        <td class="px-8 py-6 text-center">
-                            <span
-                                class="bg-green-100 text-rekas-green text-[10px] font-black px-4 py-1.5 rounded-lg uppercase tracking-widest">Paid</span>
-                        </td>
-                        <td class="px-8 py-6 text-center">
-                            <button
-                                class="bg-dark-navy text-white text-[10px] font-bold px-5 py-2.5 rounded-xl flex items-center gap-2 mx-auto hover:bg-slate-800 transition uppercase tracking-wider">
-                                <i class="fas fa-file-alt"></i> Lihat SSRD
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="bg-white rounded-[2rem] shadow-sm border border-slate-100 overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left">
+                    <thead class="bg-slate-50/50 border-b border-slate-100">
+                        <tr>
+                            <th class="px-8 py-6 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Objek
+                                Retribusi</th>
+                            <th class="px-8 py-6 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">No.
+                                SKRD / Nominal</th>
+                            <th
+                                class="px-8 py-6 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] text-center">
+                                Poin</th>
+                            <th
+                                class="px-8 py-6 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] text-center">
+                                Tgl Bayar</th>
+                            <th
+                                class="px-8 py-6 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] text-center">
+                                Status</th>
+                            <th
+                                class="px-8 py-6 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] text-center">
+                                Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-50">
+                        <tr class="hover:bg-slate-50/50 transition-colors">
+                            <td class="px-8 py-6">
+                                <p class="font-bold text-dark-text uppercase leading-tight italic">Toko Ahmad</p>
+                                <p class="text-[10px] font-bold text-rekas-green uppercase mt-0.5 tracking-tighter">
+                                    NPOR-2026-000002</p>
+                            </td>
+                            <td class="px-8 py-6">
+                                <p class="text-[10px] font-bold text-slate-400 font-mono uppercase">SKRD/2026/04/IG8CJ
+                                </p>
+                                <p class="text-lg font-black text-dark-navy tracking-tighter leading-tight mt-1">Rp
+                                    1,422,560</p>
+                            </td>
+                            <td class="px-8 py-6 text-center">
+                                <span class="font-black text-dki-blue text-sm">0</span>
+                            </td>
+                            <td class="px-8 py-6 text-center">
+                                <p class="text-xs font-bold text-slate-500">2026-04-08</p>
+                            </td>
+                            <td class="px-8 py-6 text-center">
+                                <span
+                                    class="bg-green-100 text-rekas-green text-[9px] font-black px-4 py-1.5 rounded-lg uppercase tracking-widest">Paid</span>
+                            </td>
+                            <td class="px-8 py-6 text-center">
+                                <button
+                                    class="bg-dark-navy text-white text-[10px] font-black px-5 py-2.5 rounded-xl hover:bg-slate-800 transition uppercase tracking-widest shadow-sm flex items-center gap-2 mx-auto">
+                                    <i class="fas fa-file-pdf"></i> Lihat SSRD
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-50/50 transition-colors">
+                            <td class="px-8 py-6">
+                                <p class="font-bold text-dark-text uppercase leading-tight italic">Toko Ahmad</p>
+                                <p class="text-[10px] font-bold text-rekas-green uppercase mt-0.5 tracking-tighter">
+                                    NPOR-2026-000002</p>
+                            </td>
+                            <td class="px-8 py-6">
+                                <p class="text-[10px] font-bold text-slate-400 font-mono uppercase">SKRD/2026/04/VXTYQ
+                                </p>
+                                <p class="text-lg font-black text-dark-navy tracking-tighter leading-tight mt-1">Rp
+                                    636,500</p>
+                            </td>
+                            <td class="px-8 py-6 text-center">
+                                <span class="font-black text-dki-blue text-sm">0</span>
+                            </td>
+                            <td class="px-8 py-6 text-center">
+                                <p class="text-xs font-bold text-slate-500">2026-04-07</p>
+                            </td>
+                            <td class="px-8 py-6 text-center">
+                                <span
+                                    class="bg-green-100 text-rekas-green text-[9px] font-black px-4 py-1.5 rounded-lg uppercase tracking-widest">Paid</span>
+                            </td>
+                            <td class="px-8 py-6 text-center">
+                                <button
+                                    class="bg-dark-navy text-white text-[10px] font-black px-5 py-2.5 rounded-xl hover:bg-slate-800 transition uppercase tracking-widest shadow-sm flex items-center gap-2 mx-auto">
+                                    <i class="fas fa-file-pdf"></i> Lihat SSRD
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </main>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

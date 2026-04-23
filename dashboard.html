@@ -6,10 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - REKAS DKI Jakarta</title>
 
+    <!-- Bootstrap 5 (Hanya untuk Carousel) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
 
     <!-- Font Awesome untuk Ikon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -17,13 +21,10 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        // Konfigurasi warna kustom sesuai identitas DKI Jakarta
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['Poppins', 'sans-serif'],
-                    },
+                    fontFamily: { sans: ['Poppins', 'sans-serif'] },
                     colors: {
                         'dki-blue': '#005A9E',   // Primary Color
                         'dki-orange': '#F7931E', // Secondary / Accent
@@ -36,57 +37,147 @@
             }
         }
     </script>
+
+    <style>
+        /* CSS Reset untuk Bootstrap Conflict */
+        a {
+            text-decoration: none !important;
+        }
+
+        /* Sidebar Scroll Fix */
+        .sidebar-nav {
+            scrollbar-width: thin;
+            scrollbar-color: #cbd5e1 transparent;
+        }
+
+        /* Hero Banner Style (Adaptasi Ukuran Admin) */
+        .hero-banner {
+            border-radius: 1.5rem;
+            overflow: hidden;
+            height: 300px;
+            position: relative;
+        }
+
+        .hero-banner .carousel-item {
+            height: 300px;
+        }
+
+        .hero-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.4);
+        }
+
+        .hero-overlay-text {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-left: 3rem;
+            z-index: 10;
+            color: white;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(4px);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 1rem;
+            width: fit-content;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #F7931E;
+            border-radius: 50%;
+        }
+    </style>
 </head>
 
 <body class="bg-light-gray flex font-sans text-dark-text">
 
     <!-- Sidebar -->
-    <aside class="w-64 bg-white h-screen flex flex-col shadow-lg fixed top-0 left-0">
-        <div class="flex items-center gap-4 p-5 border-b border-slate-200">
+    <aside class="w-64 bg-white h-screen flex flex-col shadow-lg fixed top-0 left-0 z-50">
+        <!-- Header Sidebar -->
+        <div class="flex items-center gap-4 p-5 border-b border-slate-200 shrink-0">
             <img src="img/logo-dki.png" alt="Logo DKI" class="h-10">
             <div>
-                <h3 class="font-bold text-dki-blue text-lg">DLH DKI</h3>
-                <p class="text-xs text-light-text tracking-wider">SISTEM MONITORING</p>
+                <h3 class="font-bold text-dki-blue text-lg leading-tight">DLH DKI</h3>
+                <p class="text-[10px] text-light-text font-bold tracking-widest uppercase">Sistem Monitoring</p>
             </div>
         </div>
-        <nav class="flex-grow p-4 space-y-2">
-            <!-- Pola Link: Untuk link aktif, tambahkan kelas bg-blue-50 text-dki-blue border-dki-blue -->
+
+        <!-- Navigasi Sidebar (Scrollable jika menu banyak) -->
+        <nav class="flex-grow p-4 space-y-1 overflow-y-auto sidebar-nav">
+            <p class="text-[10px] font-bold text-slate-400 uppercase px-3 mb-2 tracking-widest">Menu Utama</p>
             <a href="dashboard.html"
-                class="flex items-center gap-3 px-4 py-2.5 rounded-lg font-semibold bg-blue-50 text-dki-blue border-l-4 border-dki-blue transition-colors"><span><i
-                        class="fa-solid fa-chart-pie w-5"></i></span>Dashboard DLH</a>
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg font-semibold bg-blue-50 text-dki-blue border-l-4 border-dki-blue transition-colors">
+                <i class="fa-solid fa-chart-pie w-5"></i> Dashboard DLH
+            </a>
             <a href="list-subjek.html"
-                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors"><span><i
-                        class="fa-solid fa-users w-5"></i></span>List Subjek</a>
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors">
+                <i class="fa-solid fa-users w-5"></i> List Subjek
+            </a>
             <a href="list-objek.html"
-                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors"><span><i
-                        class="fa-solid fa-building w-5"></i></span>List Objek</a>
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors">
+                <i class="fa-solid fa-building w-5"></i> List Objek
+            </a>
             <a href="list-skrd.html"
-                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors"><span><i
-                        class="fa-solid fa-file-invoice-dollar w-5"></i></span>List SKRD</a>
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors">
+                <i class="fa-solid fa-file-invoice-dollar w-5"></i> List SKRD
+            </a>
             <a href="ssrd-monitoring.html"
-                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors"><span><i
-                        class="fa-solid fa-magnifying-glass-dollar w-5"></i></span>SSRD Monitoring</a>
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors">
+                <i class="fa-solid fa-magnifying-glass-dollar w-5"></i> SSRD Monitoring
+            </a>
+
+            <p class="text-[10px] font-bold text-slate-400 uppercase px-3 mt-4 mb-2 tracking-widest">Operasional</p>
             <a href="manajemen-objek.html"
-                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors"><span><i
-                        class="fa-solid fa-tasks w-5"></i></span>Manajemen Objek</a>
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors">
+                <i class="fa-solid fa-tasks w-5"></i> Manajemen Objek
+            </a>
             <a href="pemeriksaan.html"
-                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors"><span><i
-                        class="fa-solid fa-clipboard-check w-5"></i></span>Pemeriksaan</a>
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors">
+                <i class="fa-solid fa-clipboard-check w-5"></i> Pemeriksaan
+            </a>
             <a href="validasi-bayar.html"
-                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors"><span><i
-                        class="fa-solid fa-check-to-slot w-5"></i></span>Validasi Bayar</a>
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-blue-50 hover:text-dki-blue border-l-4 border-transparent transition-colors">
+                <i class="fa-solid fa-check-to-slot w-5"></i> Validasi Bayar
+            </a>
         </nav>
-        <div class="p-5 border-t border-slate-200 space-y-4">
-            <div class="flex items-center gap-3 p-2 bg-slate-50 rounded-lg">
+
+        <!-- Footer Sidebar (Sticky di bawah) -->
+        <div class="p-4 border-t border-slate-200 shrink-0 bg-white">
+            <div class="flex items-center gap-3 p-2 bg-slate-50 rounded-lg mb-3">
                 <span
                     class="flex items-center justify-center h-8 w-8 rounded-full bg-dki-orange text-white font-bold text-sm">T</span>
-                <p class="text-xs font-medium text-dark-text truncate">test.dinas@jakarta.go.id</p>
+                <div class="overflow-hidden">
+                    <p class="text-[10px] font-bold text-dark-text truncate">Test Dinas</p>
+                    <p class="text-[9px] text-light-text truncate">test.dinas@jakarta.go.id</p>
+                </div>
             </div>
             <div class="space-y-1">
-                <a href="#" class="flex items-center gap-3 text-sm text-light-text hover:text-dki-blue"><i
-                        class="fa-solid fa-gavel w-5 text-center"></i>Dasar Hukum</a>
-                <a href="index.html" class="flex items-center gap-3 text-sm text-red-500 font-bold hover:underline"><i
-                        class="fa-solid fa-arrow-right-from-bracket w-5 text-center"></i>Keluar</a>
+                <a href="#"
+                    class="flex items-center gap-3 px-3 py-1.5 text-xs text-light-text hover:text-dki-blue transition">
+                    <i class="fa-solid fa-gavel w-4"></i> Dasar Hukum</a>
+                <a href="index.html"
+                    class="flex items-center gap-3 px-3 py-2 text-xs text-red-600 font-bold hover:bg-red-50 rounded-lg transition">
+                    <i class="fa-solid fa-power-off w-4"></i> Keluar Sistem</a>
             </div>
         </div>
     </aside>
@@ -95,114 +186,140 @@
     <main class="ml-64 flex-1 p-8">
         <header class="flex justify-between items-center mb-8">
             <div>
-                <h1 class="text-2xl font-bold text-dark-text">REPORTING DINAS</h1>
-                <p class="text-light-text">PUSAT DATA & ANALISIS RETRIBUSI REKAS</p>
+                <h1 class="text-2xl font-extrabold text-dark-text tracking-tight uppercase">Reporting Dinas</h1>
+                <p class="text-light-text text-sm font-medium">Pusat Data & Analisis Retribusi Persampahan</p>
             </div>
             <button
-                class="bg-dki-green text-white font-bold py-2 px-5 rounded-lg shadow-md hover:bg-opacity-90 transition transform hover:-translate-y-0.5">
-                <i class="fas fa-file-excel mr-2"></i>Export Excel
+                class="bg-dki-green text-white font-bold py-2.5 px-6 rounded-xl shadow-lg shadow-green-200 hover:scale-105 transition-all flex items-center gap-2">
+                <i class="fas fa-file-excel"></i> Export Excel
             </button>
         </header>
 
+        <!-- BANNER CAROUSEL (ADAPTASI ADMIN) -->
+        <section class="mb-8">
+            <div id="dinasCarousel" class="carousel slide carousel-fade hero-banner shadow-xl shadow-slate-200"
+                data-bs-ride="carousel">
+                <div class="carousel-inner h-full">
+                    <!-- Slide 1 -->
+                    <div class="carousel-item active" data-bs-interval="5000">
+                        <img src="img/dki-1.png" alt="DKI 1">
+                        <div class="hero-overlay-text">
+                            <div class="status-badge"><span class="status-dot"></span> System Online & Secure</div>
+                            <h3 class="text-3xl font-extrabold mb-2 uppercase tracking-tight">Monitoring <span
+                                    class="text-dki-orange">Realisasi</span></h3>
+                            <p class="text-slate-200 max-w-xl text-sm leading-relaxed opacity-80">Pantau pergerakan data
+                                retribusi harian dari seluruh wilayah DKI Jakarta secara real-time untuk akurasi
+                                pelaporan PAD.</p>
+                        </div>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="carousel-item" data-bs-interval="5000">
+                        <img src="img/dki-2.png" alt="DKI 2">
+                        <div class="hero-overlay-text">
+                            <div class="status-badge"><span class="status-dot"></span> Integrasi Data Terpusat</div>
+                            <h3 class="text-3xl font-extrabold mb-2 uppercase tracking-tight">Kepatuhan <span
+                                    class="text-dki-orange">Wajib Retribusi</span></h3>
+                            <p class="text-slate-200 max-w-xl text-sm leading-relaxed opacity-80">Gunakan fitur analisis
+                                untuk mengidentifikasi tingkat kepatuhan pembayaran warga dan badan usaha di setiap
+                                kecamatan.</p>
+                        </div>
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="carousel-item" data-bs-interval="5000">
+                        <img src="img/dki-3.png" alt="DKI 3">
+                        <div class="hero-overlay-text">
+                            <div class="status-badge"><span class="status-dot"></span> Keamanan Data Prioritas</div>
+                            <h3 class="text-3xl font-extrabold mb-2 uppercase tracking-tight">Optimasi <span
+                                    class="text-dki-orange">PAD Jakarta</span></h3>
+                            <p class="text-slate-200 max-w-xl text-sm leading-relaxed opacity-80">Sistem REKAS
+                                memastikan setiap transaksi tercatat secara transparan dan akuntabel untuk mendukung
+                                pembangunan kota.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Stats Cards -->
         <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <div
-                class="bg-white p-6 rounded-xl shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-                <p class="text-sm text-light-text font-medium">REALISASI TAHUN INI</p>
-                <h2 class="text-3xl font-bold text-dki-blue mt-2">Rp 2,135,860</h2>
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-all">
+                <p class="text-[10px] font-black text-light-text uppercase tracking-widest">Realisasi Tahun Ini</p>
+                <h2 class="text-3xl font-extrabold text-dki-blue mt-2">Rp 2,135,860</h2>
             </div>
-            <div
-                class="bg-white p-6 rounded-xl shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-                <p class="text-sm text-light-text font-medium">KEPATUHAN</p>
-                <h2 class="text-3xl font-bold text-dki-blue mt-2">75.00%</h2>
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-all">
+                <p class="text-[10px] font-black text-light-text uppercase tracking-widest">Kepatuhan Pembayaran</p>
+                <h2 class="text-3xl font-extrabold text-dki-blue mt-2">75.00%</h2>
             </div>
-            <div
-                class="bg-white p-6 rounded-xl shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-                <p class="text-sm text-light-text font-medium">TARGET PAD</p>
-                <h2 class="text-3xl font-bold text-dki-blue mt-2">Rp 120.5 M</h2>
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-all">
+                <p class="text-[10px] font-black text-light-text uppercase tracking-widest">Target PAD 2026</p>
+                <h2 class="text-3xl font-extrabold text-dki-blue mt-2">Rp 120.5 M</h2>
             </div>
         </section>
 
         <!-- Filter Section -->
-        <section class="bg-white p-6 rounded-xl shadow-md mb-8">
-            <h3 class="font-bold text-dark-text mb-4">PILIH JENIS LAPORAN</h3>
+        <section class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 mb-8">
+            <h3 class="font-bold text-dark-text text-sm mb-4 uppercase tracking-wider">Pilih Jenis Laporan</h3>
             <div class="flex flex-wrap items-center gap-4">
-                <div class="flex bg-slate-100 rounded-lg p-1">
-                    <button class="px-4 py-2 text-sm font-semibold text-light-text rounded-md">Tahunan</button>
+                <div class="flex bg-slate-100 rounded-xl p-1">
+                    <button class="px-5 py-2 text-xs font-bold text-light-text rounded-lg">Tahunan</button>
                     <button
-                        class="px-4 py-2 text-sm font-semibold text-white bg-dki-blue rounded-md shadow">Bulanan</button>
-                    <button class="px-4 py-2 text-sm font-semibold text-light-text rounded-md">Wilayah</button>
+                        class="px-5 py-2 text-xs font-bold text-white bg-dki-blue rounded-lg shadow-sm">Bulanan</button>
+                    <button class="px-5 py-2 text-xs font-bold text-light-text rounded-lg">Wilayah</button>
                 </div>
                 <div class="flex items-center gap-4 flex-grow">
-                    <div>
-                        <label class="text-xs font-bold text-light-text">TAHUN</label>
-                        <input type="text" value="2026" class="mt-1 p-2 border rounded-lg bg-slate-100 text-center"
+                    <div class="flex-1">
+                        <input type="text" value="2026"
+                            class="w-full p-2.5 border border-slate-200 rounded-xl bg-slate-50 text-sm font-bold text-center focus:ring-2 focus:ring-dki-blue outline-none"
                             readonly>
                     </div>
-                    <div>
-                        <label class="text-xs font-bold text-light-text">MASA/BULAN</label>
-                        <input type="text" value="April" class="mt-1 p-2 border rounded-lg bg-slate-100 text-center"
+                    <div class="flex-1">
+                        <input type="text" value="April"
+                            class="w-full p-2.5 border border-slate-200 rounded-xl bg-slate-50 text-sm font-bold text-center focus:ring-2 focus:ring-dki-blue outline-none"
                             readonly>
                     </div>
                 </div>
                 <button
-                    class="bg-dki-blue text-white font-bold py-3 px-6 rounded-lg shadow-md hover:bg-opacity-90">Generate
+                    class="bg-dki-blue text-white font-bold py-3 px-8 rounded-xl shadow-md hover:bg-opacity-90 transition">Generate
                     Report</button>
             </div>
         </section>
 
         <!-- Data Table -->
-        <section class="bg-white rounded-xl shadow-md">
-            <div class="overflow-x-auto p-6">
+        <section class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+            <div class="overflow-x-auto p-4">
                 <table class="w-full text-sm text-left">
-                    <thead class="bg-slate-50 text-xs text-light-text uppercase">
+                    <thead class="bg-slate-50 text-[10px] text-light-text uppercase font-black">
                         <tr>
-                            <th class="p-4 rounded-l-lg">Periode</th>
+                            <th class="p-4">Periode</th>
                             <th class="p-4">No. SKRD</th>
                             <th class="p-4">Kategori</th>
                             <th class="p-4">Nominal (Rp)</th>
-                            <th class="p-4 rounded-r-lg">Status</th>
+                            <th class="p-4 text-center">Status</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr class="border-b border-slate-100 hover:bg-slate-50">
-                            <td class="p-4 font-medium">07 Apr 2026</td>
-                            <td class="p-4 text-slate-600">SKRD/2026/04/VXTTIQ</td>
-                            <td class="p-4"><span
-                                    class="bg-blue-100 text-dki-blue text-xs font-bold px-3 py-1 rounded-full">PRIBADI</span>
+                    <tbody class="divide-y divide-slate-50">
+                        <tr class="hover:bg-slate-50 transition-colors">
+                            <td class="p-4 font-bold text-slate-600">07 Apr 2026</td>
+                            <td class="p-4 text-slate-400 font-medium">SKRD/2026/04/VXTTIQ</td>
+                            <td class="p-4">
+                                <span
+                                    class="bg-blue-100 text-dki-blue text-[10px] font-black px-3 py-1 rounded-full uppercase">Pribadi</span>
                             </td>
-                            <td class="p-4 font-bold text-dark-text">636.500</td>
-                            <td class="p-4"><span
-                                    class="bg-green-100 text-dki-green text-xs font-bold px-3 py-1 rounded-full">PAID</span>
-                            </td>
-                        </tr>
-                        <tr class="border-b border-slate-100 hover:bg-slate-50">
-                            <td class="p-4 font-medium">07 Apr 2026</td>
-                            <td class="p-4 text-slate-600">SKRD/2026/04/M6GBH</td>
-                            <td class="p-4"><span
-                                    class="bg-blue-100 text-dki-blue text-xs font-bold px-3 py-1 rounded-full">PRIBADI</span>
-                            </td>
-                            <td class="p-4 font-bold text-dark-text">76.800</td>
-                            <td class="p-4"><span
-                                    class="bg-green-100 text-dki-green text-xs font-bold px-3 py-1 rounded-full">PAID</span>
+                            <td class="p-4 font-extrabold text-dark-text">636.500</td>
+                            <td class="p-4 text-center">
+                                <span
+                                    class="bg-green-100 text-dki-green text-[10px] font-black px-3 py-1 rounded-full uppercase">Paid</span>
                             </td>
                         </tr>
-                        <tr class="hover:bg-slate-50">
-                            <td class="p-4 font-medium">07 Apr 2026</td>
-                            <td class="p-4 text-slate-600">SKRD/2026/04/IGBCJ</td>
-                            <td class="p-4"><span
-                                    class="bg-blue-100 text-dki-blue text-xs font-bold px-3 py-1 rounded-full">PRIBADI</span>
-                            </td>
-                            <td class="p-4 font-bold text-dark-text">1.422.560</td>
-                            <td class="p-4"><span
-                                    class="bg-green-100 text-dki-green text-xs font-bold px-3 py-1 rounded-full">PAID</span>
-                            </td>
-                        </tr>
+                        <!-- Tambahan Baris ... -->
                     </tbody>
                 </table>
             </div>
         </section>
     </main>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

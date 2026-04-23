@@ -5,10 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal Layanan Pembayaran - REKAS</title>
+
+    <!-- Bootstrap 5 (Hanya untuk Carousel) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <script>
         tailwind.config = {
             theme: {
@@ -19,208 +23,311 @@
                         'dark-navy': '#111827',
                         'light-gray': '#F8F9FA',
                         'dki-blue': '#005A9E',
+                        'dki-orange': '#F7931E',
+                        'light-text': '#777777',
+                        'dark-text': '#333333',
                     }
                 }
             }
         }
     </script>
+
+    <style>
+        /* CSS Reset untuk Bootstrap Conflict */
+        a {
+            text-decoration: none !important;
+        }
+
+        /* Sidebar Scroll Fix */
+        .sidebar-nav {
+            scrollbar-width: thin;
+            scrollbar-color: #cbd5e1 transparent;
+        }
+
+        /* HERO BANNER STYLE (300px - PNG) */
+        .hero-banner {
+            border-radius: 1.5rem;
+            overflow: hidden;
+            height: 300px;
+            position: relative;
+        }
+
+        .hero-banner .carousel-item {
+            height: 300px;
+        }
+
+        .hero-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.45);
+        }
+
+        .hero-overlay-text {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-left: 3rem;
+            z-index: 10;
+            color: white;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(4px);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 1rem;
+            width: fit-content;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #F7931E;
+            border-radius: 50%;
+        }
+    </style>
 </head>
 
-<body class="bg-light-gray flex font-sans text-slate-700">
+<body class="bg-light-gray flex font-sans text-dark-text">
 
-    <!-- Sidebar -->
-    <aside class="w-64 bg-white h-screen flex flex-col shadow-sm fixed top-0 left-0">
-        <div class="p-6">
-            <div class="flex items-center gap-3">
-                <div class="bg-rekas-green p-2 rounded-lg text-white"><i class="fas fa-leaf text-xl"></i></div>
-                <div>
-                    <h1 class="font-bold text-xl leading-none text-slate-800">REKAS</h1>
-                    <p class="text-[10px] font-bold text-slate-400 tracking-widest mt-1 uppercase">Wajib Retribusi</p>
-                </div>
+    <!-- Sidebar (Identik dengan Dashboard/Dinas) -->
+    <aside class="w-64 bg-white h-screen flex flex-col shadow-lg fixed top-0 left-0 z-50">
+        <!-- Header Sidebar -->
+        <div class="flex items-center gap-4 p-5 border-b border-slate-200 shrink-0">
+            <img src="../img/logo-dki.png" alt="Logo DKI" class="h-10">
+            <div>
+                <h3 class="font-bold text-rekas-green text-lg leading-tight">REKAS</h3>
+                <p class="text-[10px] text-light-text font-bold tracking-widest uppercase">Wajib Retribusi</p>
             </div>
         </div>
-        <nav class="flex-grow px-4 space-y-1">
+
+        <!-- Navigasi Sidebar (Scrollable Area) -->
+        <nav class="flex-grow p-4 space-y-1 overflow-y-auto sidebar-nav">
+            <p class="text-[10px] font-bold text-slate-400 uppercase px-3 mb-2 tracking-widest">Menu Utama</p>
             <a href="dashboard-wajib.html"
-                class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 font-medium hover:bg-slate-50 transition">
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-green-50 hover:text-rekas-green border-l-4 border-transparent transition-colors">
                 <i class="fa-solid fa-home w-5 text-center"></i> Dashboard
             </a>
+
+            <p class="text-[10px] font-bold text-slate-400 uppercase px-3 mt-4 mb-2 tracking-widest">Layanan Saya</p>
             <a href="tagihan-skrd-wajib.html"
-                class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 font-medium hover:bg-slate-50 transition">
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-green-50 hover:text-rekas-green border-l-4 border-transparent transition-colors">
                 <i class="fa-solid fa-file-invoice w-5 text-center"></i> Tagihan SKRD
             </a>
             <a href="bukti-ssrd-wajib.html"
-                class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 font-medium hover:bg-slate-50 transition">
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-green-50 hover:text-rekas-green border-l-4 border-transparent transition-colors">
                 <i class="fa-solid fa-receipt w-5 text-center"></i> Bukti SSRD
             </a>
             <a href="layanan-pembayaran-wajib.html"
-                class="flex items-center justify-between px-4 py-3 rounded-xl bg-rekas-green text-white font-semibold shadow-md shadow-green-100">
-                <span class="flex items-center gap-3"><i class="fa-solid fa-hand-holding-dollar w-5"></i> Layanan</span>
-                <div class="w-1.5 h-1.5 bg-white rounded-full"></div>
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg font-semibold bg-green-50 text-rekas-green border-l-4 border-rekas-green transition-colors">
+                <i class="fa-solid fa-hand-holding-dollar w-5 text-center"></i> Layanan Online
             </a>
             <a href="ubah-password-wajib.html"
-                class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 font-medium hover:bg-slate-50 transition">
+                class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-light-text font-semibold hover:bg-green-50 hover:text-rekas-green border-l-4 border-transparent transition-colors">
                 <i class="fa-solid fa-key w-5 text-center"></i> Ubah Password
             </a>
         </nav>
 
-        <div class="p-4 border-t border-slate-100">
-            <div class="bg-slate-50 rounded-2xl p-4 flex items-center gap-3 mb-4">
-                <div
-                    class="h-10 w-10 rounded-full bg-green-100 text-rekas-green flex items-center justify-center font-bold">
-                    U</div>
-                <div>
-                    <p class="text-sm font-bold text-slate-800">User</p>
-                    <p class="text-[10px] text-rekas-green font-bold">USER</p>
+        <!-- Footer Sidebar (Sticky/Fixed) -->
+        <div class="p-4 border-t border-slate-200 shrink-0 bg-white">
+            <div class="flex items-center gap-3 p-2 bg-slate-50 rounded-lg mb-3">
+                <span
+                    class="flex items-center justify-center h-8 w-8 rounded-full bg-rekas-green text-white font-bold text-sm">K</span>
+                <div class="overflow-hidden">
+                    <p class="text-[10px] font-bold text-dark-text truncate leading-none">Kardi</p>
+                    <p class="text-[9px] text-light-text truncate">1.2203.2201</p>
                 </div>
             </div>
             <div class="space-y-1">
-                <a href="#" class="flex items-center gap-3 px-4 py-2 text-sm text-slate-500 hover:text-slate-800"><i
-                        class="fa-solid fa-book w-4 text-center"></i> Dasar Hukum</a>
+                <a href="#"
+                    class="flex items-center gap-3 px-3 py-1.5 text-xs text-light-text hover:text-rekas-green transition">
+                    <i class="fa-solid fa-book w-4"></i> Dasar Hukum</a>
                 <a href="../index.html"
-                    class="flex items-center gap-3 px-4 py-2 text-sm text-red-500 font-bold hover:bg-red-50 rounded-lg"><i
-                        class="fa-solid fa-right-from-bracket w-4 text-center"></i> Keluar</a>
+                    class="flex items-center gap-3 px-3 py-2 text-xs text-red-600 font-bold hover:bg-red-50 rounded-lg transition">
+                    <i class="fa-solid fa-power-off w-4"></i> Keluar</a>
             </div>
         </div>
     </aside>
 
     <!-- Main Content -->
     <main class="ml-64 flex-1 p-10">
-        <header class="mb-10">
+        <header class="mb-8">
             <h1 class="text-3xl font-black text-dark-navy tracking-tight uppercase italic">Portal <span
                     class="text-rekas-green">Pembayaran</span></h1>
-            <p class="text-slate-400 font-medium uppercase text-[10px] tracking-[0.2em]">Pilih tagihan dan lakukan
-                pembayaran online secara instan</p>
+            <p class="text-[10px] text-slate-400 font-bold uppercase tracking-[0.2em]">Sistem Pembayaran Retribusi
+                Online Terintegrasi (REKAS)</p>
         </header>
+
+        <!-- BANNER CAROUSEL (Payment Portal Context) -->
+        <section class="mb-10">
+            <div id="paymentCarousel" class="carousel slide carousel-fade hero-banner shadow-xl shadow-slate-200"
+                data-bs-ride="carousel">
+                <div class="carousel-inner h-full">
+                    <div class="carousel-item active" data-bs-interval="5000">
+                        <img src="../img/dki-2.png" alt="Payment VA">
+                        <div class="hero-overlay-text">
+                            <div class="status-badge"><span class="status-dot"></span> Transaksi Aman & Terenkripsi
+                            </div>
+                            <h3 class="text-3xl font-extrabold mb-2 uppercase tracking-tight">Bayar Retribusi
+                                <span>Lebih Praktis</span></h3>
+                            <p class="text-slate-200 max-w-xl text-sm leading-relaxed opacity-80">Gunakan metode Virtual
+                                Account atau QRIS untuk verifikasi pembayaran otomatis secara real-time tanpa perlu
+                                konfirmasi manual.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
 
             <!-- Kiri: Daftar Tagihan Tersedia -->
             <div class="lg:col-span-2 space-y-6">
-                <h4 class="text-xs font-black text-slate-400 tracking-widest uppercase mb-4 flex items-center gap-2">
-                    <i class="fas fa-list-ul text-rekas-green"></i> Pilih Tagihan Aktif
+                <h4
+                    class="text-[10px] font-black text-slate-400 tracking-widest uppercase mb-4 flex items-center gap-2 italic">
+                    <i class="fas fa-list-ul text-rekas-green"></i> Daftar Tagihan Siap Bayar
                 </h4>
 
-                <!-- Item Tagihan 1 -->
+                <!-- Item Tagihan 1 (Selected Style) -->
                 <div
-                    class="bg-white rounded-[2rem] border-2 border-rekas-green p-8 shadow-xl shadow-green-100/50 relative overflow-hidden group">
+                    class="bg-white rounded-[2rem] border-2 border-rekas-green p-8 shadow-xl shadow-green-50 relative overflow-hidden group">
                     <div
                         class="absolute right-0 top-0 h-20 w-20 bg-rekas-green/5 rounded-bl-[3rem] flex items-center justify-center">
-                        <i class="fas fa-check text-rekas-green"></i>
+                        <i class="fas fa-check-circle text-rekas-green text-xl"></i>
                     </div>
                     <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
                         <div class="flex items-center gap-6">
                             <div
-                                class="h-16 w-16 rounded-2xl bg-slate-50 text-slate-400 flex items-center justify-center text-2xl group-hover:bg-rekas-green group-hover:text-white transition-colors">
-                                <i class="fas fa-home"></i>
+                                class="h-16 w-16 rounded-2xl bg-green-50 text-rekas-green flex items-center justify-center text-2xl group-hover:bg-rekas-green group-hover:text-white transition-all duration-500 shadow-sm">
+                                <i class="fas fa-house-chimney"></i>
                             </div>
                             <div>
-                                <h5 class="text-xl font-bold text-slate-800">RUMAH YOGA</h5>
-                                <p class="text-[10px] font-bold text-rekas-green tracking-widest uppercase mb-2">
+                                <h5 class="text-xl font-black text-dark-text uppercase italic leading-none mb-1">RUMAH
+                                    YOGA</h5>
+                                <p class="text-[10px] font-black text-rekas-green tracking-widest uppercase mb-3">
                                     NPOR-2026-000001</p>
                                 <div class="flex items-center gap-4">
-                                    <span class="text-xs font-medium text-slate-400 italic">Masa April 2026</span>
-                                    <span class="text-[10px] font-mono text-slate-300">SKRD/2026/04/5254B</span>
+                                    <span
+                                        class="text-[10px] font-bold text-slate-400 uppercase bg-slate-100 px-3 py-1 rounded-lg">Masa
+                                        April 2026</span>
+                                    <span
+                                        class="text-[10px] font-mono text-slate-300 font-bold uppercase">SKRD/2026/04/5254B</span>
                                 </div>
                             </div>
                         </div>
                         <div class="text-right">
-                            <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Total Bayar
+                            <p class="text-[9px] font-black text-slate-300 uppercase tracking-widest mb-1">Tagihan Akhir
                             </p>
-                            <p class="text-2xl font-black text-dark-navy tracking-tighter">Rp 1.443.600</p>
+                            <p class="text-3xl font-black text-dark-navy tracking-tighter">Rp 1.443.600</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Item Tagihan Lain (Optional/Disabled) -->
+                <!-- Empty State / Disabled -->
                 <div
-                    class="bg-slate-100/50 rounded-[2rem] border border-dashed border-slate-200 p-8 flex items-center justify-center">
-                    <p class="text-xs font-bold text-slate-400 uppercase tracking-widest italic">Tidak ada tagihan lain
-                        yang tersedia</p>
+                    class="bg-slate-50/50 rounded-[2rem] border border-dashed border-slate-200 p-10 flex items-center justify-center">
+                    <p class="text-[10px] font-black text-slate-300 uppercase tracking-widest italic">Tidak ada tagihan
+                        lain yang tertunggak</p>
                 </div>
             </div>
 
             <!-- Kanan: Metode Pembayaran -->
             <div class="space-y-6">
-                <h4 class="text-xs font-black text-slate-400 tracking-widest uppercase mb-4">Metode Pembayaran</h4>
+                <h4 class="text-[10px] font-black text-slate-400 tracking-widest uppercase mb-4 italic">Ringkasan &
+                    Metode</h4>
 
-                <div class="bg-white rounded-[2.5rem] p-8 shadow-sm border border-slate-100">
-                    <div class="space-y-4">
+                <div class="bg-white rounded-[2rem] p-8 shadow-lg border border-slate-100">
+                    <div class="space-y-3">
                         <!-- QRIS -->
                         <label
-                            class="flex items-center justify-between p-4 rounded-2xl bg-slate-50 border-2 border-transparent hover:border-rekas-green cursor-pointer transition group">
+                            class="flex items-center justify-between p-4 rounded-2xl bg-slate-50 border-2 border-transparent hover:border-rekas-green cursor-pointer transition-all group">
                             <div class="flex items-center gap-4">
                                 <img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/QRIS_logo.png" alt="QRIS"
-                                    class="h-4">
-                                <span class="text-sm font-bold text-slate-700">QRIS / E-Wallet</span>
+                                    class="h-3.5">
+                                <span class="text-[10px] font-black text-dark-text uppercase tracking-widest">E-Wallet /
+                                    QRIS</span>
                             </div>
                             <input type="radio" name="payment" class="w-4 h-4 text-rekas-green focus:ring-rekas-green"
                                 checked>
                         </label>
 
-                        <!-- Bank Transfer -->
+                        <!-- Virtual Account -->
                         <label
-                            class="flex items-center justify-between p-4 rounded-2xl bg-slate-50 border-2 border-transparent hover:border-rekas-green cursor-pointer transition">
+                            class="flex items-center justify-between p-4 rounded-2xl bg-slate-50 border-2 border-transparent hover:border-rekas-green cursor-pointer transition-all group">
                             <div class="flex items-center gap-4">
-                                <div class="bg-dki-blue text-white text-[10px] font-bold px-2 py-1 rounded">BANK DKI
-                                </div>
-                                <span class="text-sm font-bold text-slate-700">Virtual Account</span>
-                            </div>
-                            <input type="radio" name="payment" class="w-4 h-4 text-rekas-green focus:ring-rekas-green">
-                        </label>
-
-                        <!-- Bank Lain -->
-                        <label
-                            class="flex items-center justify-between p-4 rounded-2xl bg-slate-50 border-2 border-transparent hover:border-rekas-green cursor-pointer transition">
-                            <div class="flex items-center gap-4">
-                                <div class="bg-slate-200 text-slate-500 text-[10px] font-bold px-2 py-1 rounded">ATM
-                                </div>
-                                <span class="text-sm font-bold text-slate-700">Transfer Bank Lain</span>
+                                <div
+                                    class="bg-dki-blue text-white text-[8px] font-black px-2 py-1 rounded-md uppercase">
+                                    Bank DKI</div>
+                                <span class="text-[10px] font-black text-dark-text uppercase tracking-widest">Virtual
+                                    Account</span>
                             </div>
                             <input type="radio" name="payment" class="w-4 h-4 text-rekas-green focus:ring-rekas-green">
                         </label>
                     </div>
 
-                    <div class="mt-10 pt-6 border-t border-slate-100">
+                    <div class="mt-8 pt-6 border-t border-slate-50">
                         <div class="flex justify-between mb-2">
-                            <span class="text-xs font-medium text-slate-400 uppercase tracking-widest">Subtotal</span>
-                            <span class="text-sm font-bold text-slate-700">Rp 1.443.600</span>
+                            <span class="text-[9px] font-black text-slate-300 uppercase tracking-widest">Subtotal</span>
+                            <span class="text-xs font-bold text-dark-text">Rp 1.443.600</span>
                         </div>
-                        <div class="flex justify-between mb-6">
-                            <span class="text-xs font-medium text-slate-400 uppercase tracking-widest">Biaya
-                                Admin</span>
-                            <span class="text-sm font-bold text-rekas-green italic">FREE</span>
+                        <div class="flex justify-between mb-8">
+                            <span class="text-[9px] font-black text-slate-300 uppercase tracking-widest">Admin
+                                Fee</span>
+                            <span
+                                class="text-[10px] font-black text-rekas-green italic uppercase tracking-widest">Gratis</span>
                         </div>
 
                         <div class="flex justify-between items-end mb-8">
                             <div>
-                                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Total Bayar
+                                <p
+                                    class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 leading-none">
+                                    Total Pembayaran</p>
+                                <p class="text-3xl font-black text-dark-navy tracking-tighter leading-none">Rp 1.443.600
                                 </p>
-                                <p class="text-2xl font-black text-dark-navy tracking-tighter">Rp 1.443.600</p>
                             </div>
                             <div
-                                class="h-10 w-10 bg-green-50 text-rekas-green rounded-full flex items-center justify-center animate-pulse">
+                                class="h-10 w-10 bg-green-50 text-rekas-green rounded-xl flex items-center justify-center animate-pulse shadow-sm">
                                 <i class="fas fa-shield-alt"></i>
                             </div>
                         </div>
 
                         <button
-                            class="w-full py-5 bg-dark-navy text-white font-black uppercase tracking-widest rounded-2xl shadow-xl shadow-slate-200 hover:bg-rekas-green active:scale-95 transition-all flex items-center justify-center gap-3">
-                            Proses Bayar Sekarang <i class="fas fa-arrow-right"></i>
+                            class="w-full py-5 bg-dark-navy text-white font-black uppercase tracking-[0.2em] rounded-2xl shadow-xl shadow-slate-200 hover:bg-rekas-green hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-3 text-[10px]">
+                            Lanjut Bayar <i class="fas fa-arrow-right"></i>
                         </button>
                     </div>
                 </div>
 
-                <!-- Keamanan Info -->
-                <div class="flex items-center gap-4 px-4 text-slate-400">
-                    <i class="fas fa-lock text-xs"></i>
-                    <p class="text-[10px] font-medium leading-relaxed uppercase tracking-widest">
-                        Pembayaran dijamin aman dengan enkripsi SSL 256-bit dan diawasi oleh Bank Indonesia.
+                <!-- Footer Keamanan -->
+                <div class="flex items-start gap-4 px-4 text-slate-300">
+                    <i class="fas fa-lock text-[10px] mt-1"></i>
+                    <p class="text-[9px] font-bold leading-relaxed uppercase tracking-widest">
+                        Seluruh transaksi di REKAS diproses melalui kanal resmi dan diawasi secara penuh untuk keamanan
+                        data Anda.
                     </p>
                 </div>
             </div>
 
         </div>
     </main>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
