@@ -5,100 +5,199 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Portal - REKAS JKT</title>
+    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
         body {
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1555899434-94d1368aa7af?q=80&w=2070') no-repeat center center fixed;
-            background-size: cover;
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+        }
+
+        .split-container {
             height: 100vh;
             display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
-        .login-card {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 40px;
+        /* Sisi Kiri: Slider */
+        .slider-section {
+            flex: 1.2;
+            position: relative;
+            background-color: #000;
+        }
+
+        .carousel-item {
+            height: 100vh;
+            position: relative;
+        }
+
+        .carousel-item img {
+            object-fit: cover;
+            height: 100%;
             width: 100%;
-            max-width: 400px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            filter: brightness(0.6);
         }
 
-        .btn-jakarta {
-            background-color: #198754;
+        .overlay-content {
+            position: absolute;
+            bottom: 10%;
+            left: 10%;
+            right: 10%;
             color: white;
-            border-radius: 10px;
-            padding: 12px;
+            z-index: 10;
         }
 
-        .icon-box {
-            width: 60px;
-            height: 60px;
-            background: #198754;
-            border-radius: 15px;
+        .logo-jakarta {
+            width: 80px;
+            margin-bottom: 20px;
+        }
+
+        /* Sisi Kanan: Login Section */
+        .login-section {
+            flex: 0.8;
+            background: white;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 20px;
-            color: white;
-            font-size: 30px;
+            padding: 50px;
+            overflow-y: auto;
+        }
+
+        .login-content {
+            width: 100%;
+            max-width: 450px;
+        }
+
+        /* Role Cards Style */
+        .role-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            text-decoration: none;
+            display: block;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .role-card:hover {
+            border-color: #005A9E;
+            background-color: #f8fbff;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 90, 158, 0.1);
+        }
+
+        .role-title {
+            color: #004b84;
+            font-weight: 700;
+            margin-bottom: 4px;
+            display: block;
+        }
+
+        .role-desc {
+            color: #777;
+            font-size: 0.85rem;
+        }
+
+        .footer-status {
+            background-color: #e6fffa;
+            color: #0694a2;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 10px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .status-dot {
+            height: 8px;
+            width: 8px;
+            background-color: #31c48d;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        @media (max-width: 992px) {
+            .slider-section {
+                display: none;
+            }
+
+            .login-section {
+                flex: 1;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <div class="login-card text-center">
-        <div class="icon-box">
-            <i class="bi bi-shield-check"></i>
+    <div class="split-container">
+        <!-- Sisi Kiri: Carousel Slider -->
+        <div class="slider-section">
+            <div id="loginCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <!-- Slide 1 -->
+                    <div class="carousel-item active" data-bs-interval="5000">
+                        <img src="img/dki-1.png" alt="Jakarta 1">
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="carousel-item" data-bs-interval="5000">
+                        <img src="img/dki-2.png" alt="Jakarta 2">
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="carousel-item" data-bs-interval="5000">
+                        <img src="img/dki-3.png" alt="Jakarta 3">
+                    </div>
+                </div>
+            </div>
+
+            <div class="overlay-content">
+                <img src="img/logo-dki.png" alt="Logo DKI" class="logo-jakarta">
+                <h1 class="display-4 fw-bold">Transformasi Digital <br>Retribusi Persampahan</h1>
+                <p class="lead">Sistem Monitoring & Pelaporan Retribusi (REKAS) Terintegrasi Pemerintah Provinsi DKI
+                    Jakarta.</p>
+            </div>
         </div>
-        <h4 class="fw-bold">PORTAL INTERNAL REKAS</h4>
-        <p class="text-muted small">Sistem Elektronik Retribusi Persampahan <br> DKI Jakarta</p>
 
-        <form class="text-start mt-4">
-            <!-- Username -->
-            <div class="mb-3">
-                <label class="form-label small fw-bold text-uppercase">Username</label>
-                <div class="input-group">
-                    <span class="input-group-text bg-white"><i class="bi bi-person text-muted"></i></span>
-                    <input type="text" class="form-control border-start-0" placeholder="Masukkan Username">
+        <!-- Sisi Kanan: Role Selection -->
+        <div class="login-section">
+            <div class="login-content">
+                <h2 class="fw-bold mb-1">Selamat Datang Kembali</h2>
+                <p class="text-muted mb-5">Pilih role (hak akses) di bawah ini untuk memulai sesi simulasi Anda.</p>
+
+                <div class="role-options">
+
+                    <!-- Role: Kepala Dinas (Dinas) -->
+                    <a href="dashboard.html" class="role-card">
+                        <span class="role-title">Dinas Lingkungan Hidup</span>
+                        <span class="role-desc">Login sbg: Staff Dinas Lingkungan Hidup</span>
+                    </a>
+
+                    <!-- Role: Wajib Retribusi (User Folder) -->
+                    <a href="user/dashboard-wajib.html" class="role-card"
+                        style="border-color: #22C55E; background-color: #f6fffa;">
+                        <span class="role-title" style="color: #198754;">Wajib Retribusi (Warga)</span>
+                        <span class="role-desc">Login sbg: Kardi (Member Sejak 2026)</span>
+                    </a>
+                </div>
+
+                <div class="footer-status">
+                    <span class="status-dot"></span>
+                    Engine Database Mockup Ready
                 </div>
             </div>
-
-            <!-- Password -->
-            <div class="mb-4">
-                <label class="form-label small fw-bold text-uppercase">Password</label>
-                <div class="input-group">
-                    <span class="input-group-text bg-white"><i class="bi bi-lock text-muted"></i></span>
-                    <input type="password" class="form-control border-start-0" placeholder="Masukkan Password">
-                </div>
-            </div>
-
-            <!-- Tombol Login Dinas -->
-            <button type="submit" formaction="dashboard.html" class="btn w-100 fw-bold mb-3 shadow-sm"
-                style="background-color: #005A9E; color: white;">
-                MASUK SEBAGAI DINAS <i class="bi bi-shield-lock ms-2"></i>
-            </button>
-
-            <!-- Tombol Login Wajib Retribusi -->
-            <button type="submit" formaction="user/dashboard-wajib.html" class="btn w-100 fw-bold shadow-sm"
-                style="background-color: #22C55E; color: white;">
-                MASUK WAJIB RETRIBUSI <i class="bi bi-person-check ms-2"></i>
-            </button>
-
-            <div class="text-center mt-4">
-                <a href="#" class="small text-muted text-decoration-none">Lupa Password?</a>
-            </div>
-        </form>
-
-        <div class="mt-4 text-muted" style="font-size: 11px;">
-            © 2024 Dinas Lingkungan Hidup DKI Jakarta <br>
-            Keamanan data adalah prioritas kami.
         </div>
     </div>
 
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
