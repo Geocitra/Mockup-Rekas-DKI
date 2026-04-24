@@ -37,18 +37,16 @@
     </script>
 
     <style>
-        /* Reset gaya agar tidak konflik dengan Bootstrap */
         a {
             text-decoration: none !important;
         }
 
-        /* Sidebar Scroll Fix */
         .sidebar-nav {
             scrollbar-width: thin;
             scrollbar-color: #cbd5e1 transparent;
         }
 
-        /* HERO BANNER STYLE (Adaptasi Ukuran Admin - PNG Format) */
+        /* HERO BANNER STYLE */
         .hero-banner {
             border-radius: 1.5rem;
             overflow: hidden;
@@ -76,7 +74,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding-left: 3rem;
+            padding: 0 3rem;
             z-index: 10;
             color: white;
         }
@@ -104,23 +102,54 @@
             background: #F7931E;
             border-radius: 50%;
         }
+
+        /* Responsive Mobile Adjustments */
+        @media (max-width: 1024px) {
+            .hero-overlay-text {
+                padding: 0 1.5rem;
+            }
+
+            .hero-overlay-text h3 {
+                font-size: 1.5rem !important;
+            }
+
+            .hero-overlay-text p {
+                font-size: 0.75rem !important;
+            }
+        }
     </style>
 </head>
 
-<body class="bg-light-gray flex font-sans text-dark-text">
+<body class="bg-light-gray flex font-sans text-dark-text overflow-x-hidden">
+
+    <!-- Mobile Header Trigger -->
+    <div
+        class="lg:hidden fixed top-0 left-0 right-0 bg-white shadow-md z-[60] px-4 py-3 flex justify-between items-center">
+        <div class="flex items-center gap-2">
+            <img src="img/logo-dki.png" alt="Logo" class="h-8">
+            <span class="font-bold text-dki-blue text-sm uppercase">REKAS DLH</span>
+        </div>
+        <button onclick="toggleSidebar()" class="text-dki-blue text-2xl">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    </div>
 
     <!-- Sidebar -->
-    <aside class="w-64 bg-white h-screen flex flex-col shadow-lg fixed top-0 left-0 z-50">
-        <!-- Header Sidebar -->
-        <div class="flex items-center gap-4 p-5 border-b border-slate-200 shrink-0">
-            <img src="img/logo-dki.png" alt="Logo DKI" class="h-10">
-            <div>
-                <h3 class="font-bold text-dki-blue text-lg leading-tight">DLH DKI</h3>
-                <p class="text-[10px] text-light-text font-bold tracking-widest uppercase">Sistem Monitoring</p>
+    <aside id="sidebar"
+        class="fixed inset-y-0 left-0 z-[100] w-64 bg-white h-screen flex flex-col shadow-lg transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out">
+        <div class="flex items-center justify-between p-5 border-b border-slate-200 shrink-0">
+            <div class="flex items-center gap-4">
+                <img src="img/logo-dki.png" alt="Logo DKI" class="h-10">
+                <div>
+                    <h3 class="font-bold text-dki-blue text-lg leading-tight">DLH DKI</h3>
+                    <p class="text-[10px] text-light-text font-bold tracking-widest uppercase">Sistem Monitoring</p>
+                </div>
             </div>
+            <button onclick="toggleSidebar()" class="lg:hidden text-slate-400">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
         </div>
 
-        <!-- Navigasi Sidebar (Scrollable) -->
         <nav class="flex-grow p-4 space-y-1 overflow-y-auto sidebar-nav">
             <p class="text-[10px] font-bold text-slate-400 uppercase px-3 mb-2 tracking-widest">Menu Utama</p>
             <a href="dashboard.html"
@@ -159,7 +188,6 @@
             </a>
         </nav>
 
-        <!-- Footer Sidebar (Fixed) -->
         <div class="p-4 border-t border-slate-200 shrink-0 bg-white">
             <div class="flex items-center gap-3 p-2 bg-slate-50 rounded-lg mb-3">
                 <span
@@ -180,48 +208,37 @@
         </div>
     </aside>
 
+    <!-- Overlay Mobile -->
+    <div id="sidebarOverlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black/50 z-[90] hidden lg:hidden"></div>
+
     <!-- Main Content -->
-    <main class="ml-64 flex-1 p-8">
-        <header class="flex justify-between items-center mb-8">
+    <main class="w-full lg:ml-64 flex-1 p-4 md:p-8 pt-20 lg:pt-8 transition-all">
+        <header class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
             <div>
-                <h1 class="text-2xl font-extrabold text-dark-text tracking-tight uppercase">Pemeriksaan & Update Data
-                </h1>
-                <p class="text-light-text text-sm">Objek: <span class="font-bold text-dki-blue">TOKO AHMAD
+                <h1 class="text-xl md:text-2xl font-extrabold text-dark-text tracking-tight uppercase leading-tight">
+                    Pemeriksaan & Update Data</h1>
+                <p class="text-light-text text-xs md:text-sm">Objek: <span class="font-bold text-dki-blue">TOKO AHMAD
                         (NPOR-2026-000002)</span></p>
             </div>
             <a href="manajemen-objek.html"
-                class="bg-white text-dark-text border border-slate-200 font-bold py-2.5 px-6 rounded-xl shadow-sm hover:bg-slate-50 transition flex items-center gap-2">
+                class="w-full md:w-auto bg-white text-dark-text border border-slate-200 font-bold py-2.5 px-6 rounded-xl shadow-sm hover:bg-slate-50 transition flex items-center justify-center gap-2">
                 <i class="fas fa-arrow-left"></i> Kembali
             </a>
         </header>
 
-        <!-- BANNER CAROUSEL (Custom for Pemeriksaan - PNG Format) -->
+        <!-- BANNER CAROUSEL -->
         <section class="mb-8">
             <div id="pemeriksaanCarousel" class="carousel slide carousel-fade hero-banner shadow-xl shadow-slate-200"
                 data-bs-ride="carousel">
                 <div class="carousel-inner h-full">
-                    <!-- Slide 1 -->
                     <div class="carousel-item active" data-bs-interval="5000">
                         <img src="img/dki-2.png" alt="DKI 2">
                         <div class="hero-overlay-text">
                             <div class="status-badge"><span class="status-dot"></span> Verifikasi Lapangan Digital</div>
-                            <h3 class="text-3xl font-extrabold mb-2 uppercase tracking-tight">Validasi <span>Kondisi
-                                    Riil</span></h3>
-                            <p class="text-slate-200 max-w-xl text-sm leading-relaxed opacity-80">Gunakan form
-                                pemeriksaan ini untuk mencatat hasil survei lapangan secara digital. Akurasi data Anda
-                                menentukan keadilan penetapan retribusi.</p>
-                        </div>
-                    </div>
-                    <!-- Slide 2 -->
-                    <div class="carousel-item" data-bs-interval="5000">
-                        <img src="img/dki-3.png" alt="DKI 3">
-                        <div class="hero-overlay-text">
-                            <div class="status-badge"><span class="status-dot"></span> Akuntabilitas Petugas</div>
-                            <h3 class="text-3xl font-extrabold mb-2 uppercase tracking-tight">Update <span>Volume
-                                    Sampah</span></h3>
-                            <p class="text-slate-200 max-w-xl text-sm leading-relaxed opacity-80">Pastikan setiap
-                                perubahan data volume (m³) didasarkan pada perhitungan yang dapat dipertanggungjawabkan
-                                sesuai regulasi DLH DKI Jakarta.</p>
+                            <h3 class="text-xl md:text-3xl font-extrabold mb-2 uppercase tracking-tight">Validasi
+                                <span>Kondisi Riil</span></h3>
+                            <p class="text-slate-200 max-w-xl text-[10px] md:text-sm leading-relaxed opacity-80">Catat
+                                hasil survei lapangan secara digital untuk akurasi penetapan retribusi.</p>
                         </div>
                     </div>
                 </div>
@@ -231,9 +248,9 @@
         <!-- Form Update Data -->
         <form class="space-y-6">
             <!-- Section 1: Informasi Dasar -->
-            <section class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+            <section class="bg-white p-5 md:p-8 rounded-2xl shadow-sm border border-slate-100">
                 <h3
-                    class="text-base font-black text-dark-text mb-6 border-b border-slate-50 pb-4 flex items-center gap-3 uppercase italic">
+                    class="text-sm md:text-base font-black text-dark-text mb-6 border-b border-slate-50 pb-4 flex items-center gap-3 uppercase italic">
                     <i class="fas fa-info-circle text-dki-blue"></i> Informasi Dasar Objek
                 </h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -272,9 +289,9 @@
             </section>
 
             <!-- Section 2: Alamat -->
-            <section class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+            <section class="bg-white p-5 md:p-8 rounded-2xl shadow-sm border border-slate-100">
                 <h3
-                    class="text-base font-black text-dark-text mb-6 border-b border-slate-50 pb-4 flex items-center gap-3 uppercase italic">
+                    class="text-sm md:text-base font-black text-dark-text mb-6 border-b border-slate-50 pb-4 flex items-center gap-3 uppercase italic">
                     <i class="fas fa-map-marked-alt text-dki-blue"></i> Alamat & Lokasi
                 </h3>
                 <div class="grid grid-cols-1 gap-6">
@@ -284,7 +301,7 @@
                         <textarea rows="3"
                             class="w-full p-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-dki-blue focus:outline-none bg-slate-50 transition text-sm font-medium">Jl. Jenderal Sudirman No.Kav. 52-53, Senayan, Kebayoran Baru, Kota Jakarta Selatan</textarea>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-end">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 items-end">
                         <div class="space-y-2">
                             <label class="text-[10px] font-black text-light-text uppercase tracking-widest">Koordinat
                                 Lokasi</label>
@@ -293,7 +310,7 @@
                                 value="-6.2253, 106.8096">
                         </div>
                         <button type="button"
-                            class="bg-dark-text text-white font-black py-3 px-6 rounded-xl hover:bg-black transition flex items-center justify-center gap-2 text-[11px] uppercase tracking-widest shadow-lg">
+                            class="bg-dark-text text-white font-black py-3.5 px-6 rounded-xl hover:bg-black transition flex items-center justify-center gap-2 text-[11px] uppercase tracking-widest shadow-lg w-full">
                             <i class="fas fa-street-view"></i> Lihat di Peta
                         </button>
                     </div>
@@ -301,9 +318,9 @@
             </section>
 
             <!-- Section 3: Data Pemeriksaan -->
-            <section class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+            <section class="bg-white p-5 md:p-8 rounded-2xl shadow-sm border border-slate-100">
                 <h3
-                    class="text-base font-black text-dark-text mb-6 border-b border-slate-50 pb-4 flex items-center gap-3 uppercase italic">
+                    class="text-sm md:text-base font-black text-dark-text mb-6 border-b border-slate-50 pb-4 flex items-center gap-3 uppercase italic">
                     <i class="fas fa-clipboard-list text-dki-blue"></i> Data Pemeriksaan Lapangan
                 </h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -325,12 +342,12 @@
                         <label class="text-[10px] font-black text-light-text uppercase tracking-widest">Catatan
                             Pemeriksaan</label>
                         <textarea rows="3"
-                            class="w-full p-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-dki-blue focus:outline-none bg-slate-50 transition text-sm font-medium">Verifikasi volume sampah sesuai dengan kondisi di lapangan. Pemilik kooperatif.</textarea>
+                            class="w-full p-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-dki-blue focus:outline-none bg-slate-50 transition text-sm font-medium">Verifikasi volume sampah sesuai dengan kondisi di lapangan.</textarea>
                     </div>
                     <div class="md:col-span-2 space-y-4 pt-4">
                         <label class="text-[10px] font-black text-light-text uppercase tracking-widest block">Status
                             Verifikasi</label>
-                        <div class="flex gap-8">
+                        <div class="flex flex-col md:flex-row gap-4 md:gap-8">
                             <label class="flex items-center gap-3 cursor-pointer group">
                                 <input type="radio" name="verifikasi" checked
                                     class="w-5 h-5 text-dki-blue focus:ring-dki-blue">
@@ -349,21 +366,29 @@
             </section>
 
             <!-- Actions -->
-            <div class="flex justify-between items-center pt-6">
+            <div class="flex flex-col-reverse md:flex-row justify-between items-center gap-6 pt-6 mb-10">
                 <button type="button"
                     class="text-red-500 font-black text-[11px] uppercase tracking-widest hover:underline flex items-center gap-2">
                     <i class="fas fa-trash-alt"></i> Hapus Objek
                 </button>
                 <button type="submit"
-                    class="bg-dki-green text-white font-black py-4 px-10 rounded-2xl shadow-xl shadow-green-100 hover:bg-opacity-90 transform hover:-translate-y-0.5 transition flex items-center gap-3 text-[11px] uppercase tracking-[0.2em]">
+                    class="w-full md:w-auto bg-dki-green text-white font-black py-4 px-10 rounded-2xl shadow-xl shadow-green-100 hover:bg-opacity-90 transform hover:-translate-y-0.5 transition flex items-center justify-center gap-3 text-[11px] uppercase tracking-[0.2em]">
                     <i class="fas fa-save"></i> Simpan Perubahan
                 </button>
             </div>
         </form>
     </main>
 
-    <!-- Bootstrap 5 JS -->
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            sidebar.classList.toggle('-translate-x-full');
+            overlay.classList.toggle('hidden');
+        }
+    </script>
 </body>
 
 </html>

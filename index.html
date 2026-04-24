@@ -14,7 +14,10 @@
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            overflow: hidden;
+            /* Ubah ke overflow-x saja agar mobile bisa scroll ke bawah */
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
         }
 
         .split-container {
@@ -27,6 +30,7 @@
             flex: 1.2;
             position: relative;
             background-color: #000;
+            overflow: hidden;
         }
 
         .carousel-item {
@@ -124,13 +128,61 @@
             display: inline-block;
         }
 
+        /* RESPONSIVE BREAKPOINT */
         @media (max-width: 992px) {
+            .split-container {
+                flex-direction: column;
+                /* Ubah jadi atas-bawah */
+                height: auto;
+            }
+
             .slider-section {
-                display: none;
+                flex: none;
+                height: 40vh;
+                /* Slider hanya tampil setengah layar di mobile */
+                min-height: 300px;
+            }
+
+            .carousel-item {
+                height: 40vh;
+                min-height: 300px;
             }
 
             .login-section {
-                flex: 1;
+                flex: none;
+                padding: 40px 20px;
+                background: #fff;
+            }
+
+            .overlay-content {
+                bottom: 20px;
+                left: 20px;
+                right: 20px;
+            }
+
+            .overlay-content h1 {
+                font-size: 1.5rem !important;
+                /* Perkecil judul di mobile */
+            }
+
+            .overlay-content p {
+                font-size: 0.9rem !important;
+                margin-bottom: 0;
+            }
+
+            .logo-jakarta {
+                width: 50px;
+                margin-bottom: 10px;
+            }
+
+            .login-content h2 {
+                font-size: 1.5rem;
+                text-align: center;
+            }
+
+            .login-content p.text-muted {
+                text-align: center;
+                margin-bottom: 30px !important;
             }
         }
     </style>

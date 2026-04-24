@@ -37,18 +37,16 @@
     </script>
 
     <style>
-        /* Reset gaya agar tidak konflik dengan Bootstrap */
         a {
             text-decoration: none !important;
         }
 
-        /* Sidebar Scroll Fix */
         .sidebar-nav {
             scrollbar-width: thin;
             scrollbar-color: #cbd5e1 transparent;
         }
 
-        /* HERO BANNER STYLE (Adaptasi Ukuran Admin - PNG Format) */
+        /* HERO BANNER STYLE */
         .hero-banner {
             border-radius: 1.5rem;
             overflow: hidden;
@@ -76,7 +74,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding-left: 3rem;
+            padding: 0 3rem;
             z-index: 10;
             color: white;
         }
@@ -104,23 +102,54 @@
             background: #F7931E;
             border-radius: 50%;
         }
+
+        /* Responsive Mobile Adjustments */
+        @media (max-width: 1024px) {
+            .hero-overlay-text {
+                padding: 0 1.5rem;
+            }
+
+            .hero-overlay-text h3 {
+                font-size: 1.5rem !important;
+            }
+
+            .hero-overlay-text p {
+                font-size: 0.75rem !important;
+            }
+        }
     </style>
 </head>
 
-<body class="bg-light-gray flex font-sans text-dark-text">
+<body class="bg-light-gray flex font-sans text-dark-text overflow-x-hidden">
+
+    <!-- Mobile Header Trigger -->
+    <div
+        class="lg:hidden fixed top-0 left-0 right-0 bg-white shadow-md z-[60] px-4 py-3 flex justify-between items-center">
+        <div class="flex items-center gap-2">
+            <img src="img/logo-dki.png" alt="Logo" class="h-8">
+            <span class="font-bold text-dki-blue text-sm uppercase">REKAS DLH</span>
+        </div>
+        <button onclick="toggleSidebar()" class="text-dki-blue text-2xl">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    </div>
 
     <!-- Sidebar -->
-    <aside class="w-64 bg-white h-screen flex flex-col shadow-lg fixed top-0 left-0 z-50">
-        <!-- Header Sidebar -->
-        <div class="flex items-center gap-4 p-5 border-b border-slate-200 shrink-0">
-            <img src="img/logo-dki.png" alt="Logo DKI" class="h-10">
-            <div>
-                <h3 class="font-bold text-dki-blue text-lg leading-tight">DLH DKI</h3>
-                <p class="text-[10px] text-light-text font-bold tracking-widest uppercase">Sistem Monitoring</p>
+    <aside id="sidebar"
+        class="fixed inset-y-0 left-0 z-[100] w-64 bg-white h-screen flex flex-col shadow-lg transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out">
+        <div class="flex items-center justify-between p-5 border-b border-slate-200 shrink-0">
+            <div class="flex items-center gap-4">
+                <img src="img/logo-dki.png" alt="Logo DKI" class="h-10">
+                <div>
+                    <h3 class="font-bold text-dki-blue text-lg leading-tight">DLH DKI</h3>
+                    <p class="text-[10px] text-light-text font-bold tracking-widest uppercase">Sistem Monitoring</p>
+                </div>
             </div>
+            <button onclick="toggleSidebar()" class="lg:hidden text-slate-400">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
         </div>
 
-        <!-- Navigasi Sidebar (Scrollable Area) -->
         <nav class="flex-grow p-4 space-y-1 overflow-y-auto sidebar-nav">
             <p class="text-[10px] font-bold text-slate-400 uppercase px-3 mb-2 tracking-widest">Menu Utama</p>
             <a href="dashboard.html"
@@ -159,7 +188,6 @@
             </a>
         </nav>
 
-        <!-- Footer Sidebar (Sticky di bawah) -->
         <div class="p-4 border-t border-slate-200 shrink-0 bg-white">
             <div class="flex items-center gap-3 p-2 bg-slate-50 rounded-lg mb-3">
                 <span
@@ -180,44 +208,31 @@
         </div>
     </aside>
 
+    <!-- Overlay Mobile -->
+    <div id="sidebarOverlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black/50 z-[90] hidden lg:hidden"></div>
+
     <!-- Main Content -->
-    <main class="ml-64 flex-1 p-8">
-        <header class="flex justify-between items-center mb-8">
-            <div>
-                <h1 class="text-2xl font-extrabold text-dark-text tracking-tight uppercase">Manajemen Objek Retribusi
-                </h1>
-                <p class="text-light-text text-sm font-medium">Pengelolaan, inventarisasi, dan verifikasi data objek di
-                    lapangan.</p>
-            </div>
+    <main class="w-full lg:ml-64 flex-1 p-4 md:p-8 pt-20 lg:pt-8 transition-all">
+        <header class="mb-8">
+            <h1 class="text-xl md:text-2xl font-extrabold text-dark-text tracking-tight uppercase">Manajemen Objek
+                Retribusi</h1>
+            <p class="text-light-text text-xs md:text-sm font-medium">Pengelolaan, inventarisasi, dan verifikasi data
+                objek di lapangan.</p>
         </header>
 
-        <!-- BANNER CAROUSEL (Custom for Objek - PNG Format) -->
+        <!-- BANNER CAROUSEL -->
         <section class="mb-8">
             <div id="objekCarousel" class="carousel slide carousel-fade hero-banner shadow-xl shadow-slate-200"
                 data-bs-ride="carousel">
                 <div class="carousel-inner h-full">
-                    <!-- Slide 1 -->
                     <div class="carousel-item active" data-bs-interval="5000">
                         <img src="img/dki-2.png" alt="DKI 2">
                         <div class="hero-overlay-text">
                             <div class="status-badge"><span class="status-dot"></span> Verifikasi Lapangan Aktif</div>
-                            <h3 class="text-3xl font-extrabold mb-2 uppercase tracking-tight">Akurasi <span>Data
-                                    Objek</span></h3>
-                            <p class="text-slate-200 max-w-xl text-sm leading-relaxed opacity-80">Lakukan pemutakhiran
-                                data teknis objek retribusi secara berkala untuk memastikan penetapan volume sampah
-                                sesuai dengan fakta di lapangan.</p>
-                        </div>
-                    </div>
-                    <!-- Slide 2 -->
-                    <div class="carousel-item" data-bs-interval="5000">
-                        <img src="img/dki-3.png" alt="DKI 3">
-                        <div class="hero-overlay-text">
-                            <div class="status-badge"><span class="status-dot"></span> Manajemen Inventarisasi</div>
-                            <h3 class="text-3xl font-extrabold mb-2 uppercase tracking-tight">Pemetaan <span>Unit
-                                    Kerja</span></h3>
-                            <p class="text-slate-200 max-w-xl text-sm leading-relaxed opacity-80">Kelola hirarki dan
-                                relasi antara Subjek (Owner) dengan Objek Retribusi guna memudahkan proses pengawasan
-                                dan penagihan kewilayahan.</p>
+                            <h3 class="text-xl md:text-3xl font-extrabold mb-2 uppercase tracking-tight">Akurasi
+                                <span>Data Objek</span></h3>
+                            <p class="text-slate-200 max-w-xl text-[10px] md:text-sm leading-relaxed opacity-80">Lakukan
+                                pemutakhiran data teknis objek retribusi secara berkala.</p>
                         </div>
                     </div>
                 </div>
@@ -232,7 +247,7 @@
                 </span>
                 <input type="text"
                     class="block w-full pl-11 pr-4 py-3 border border-slate-200 rounded-xl bg-slate-50 focus:outline-none focus:ring-2 focus:ring-dki-blue focus:bg-white transition-all text-sm"
-                    placeholder="Cari berdasarkan Nama Objek, NPOR, atau Alamat Lengkap...">
+                    placeholder="Cari berdasarkan Nama Objek, NPOR, atau Alamat...">
             </div>
         </section>
 
@@ -242,80 +257,82 @@
                 <table class="w-full text-sm text-left">
                     <thead class="bg-slate-50 text-[10px] text-light-text uppercase font-black">
                         <tr>
-                            <th class="p-4">Objek Retribusi</th>
-                            <th class="p-4">Subjek (Owner)</th>
-                            <th class="p-4">Alamat Lokasi</th>
-                            <th class="p-4">Status Verifikasi</th>
-                            <th class="p-4 text-center">Aksi Operasional</th>
+                            <th class="p-4 whitespace-nowrap">Objek Retribusi</th>
+                            <th class="p-4 whitespace-nowrap">Subjek (Owner)</th>
+                            <th class="p-4 whitespace-nowrap">Alamat Lokasi</th>
+                            <th class="p-4 whitespace-nowrap text-center">Status Verifikasi</th>
+                            <th class="p-4 text-center whitespace-nowrap">Aksi Operasional</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-slate-50">
                         <tr class="hover:bg-slate-50 transition-colors">
-                            <td class="p-4">
+                            <td class="p-4 whitespace-nowrap">
                                 <div class="flex items-center gap-3">
                                     <div
-                                        class="h-10 w-10 bg-blue-50 text-dki-blue flex items-center justify-center rounded-xl shadow-sm">
+                                        class="h-10 w-10 bg-blue-50 text-dki-blue flex items-center justify-center rounded-xl shadow-sm shrink-0">
                                         <i class="fas fa-store"></i>
                                     </div>
                                     <div>
-                                        <div class="font-bold text-dark-text leading-tight uppercase italic">Toko Ahmad
-                                        </div>
                                         <div
-                                            class="text-[10px] text-dki-blue font-black tracking-tighter uppercase mt-0.5">
+                                            class="font-bold text-dark-text leading-tight uppercase italic text-xs md:text-sm">
+                                            Toko Ahmad</div>
+                                        <div
+                                            class="text-[9px] md:text-[10px] text-dki-blue font-black tracking-tighter uppercase mt-0.5">
                                             NPOR-2026-000002</div>
                                     </div>
                                 </div>
                             </td>
-                            <td class="p-4">
-                                <div class="font-bold text-slate-700 uppercase leading-none">Kardi</div>
+                            <td class="p-4 whitespace-nowrap">
+                                <div class="font-bold text-slate-700 uppercase leading-none text-xs">Kardi</div>
                                 <div class="text-[10px] text-slate-400 font-mono mt-1">1.2203.2201</div>
                             </td>
                             <td class="p-4">
-                                <p class="text-xs text-slate-500 leading-relaxed max-w-xs">Jl. Jenderal Sudirman No.Kav.
-                                    52-53, Senayan</p>
+                                <p class="text-[11px] md:text-xs text-slate-500 leading-relaxed min-w-[200px] max-w-xs">
+                                    Jl. Jenderal Sudirman No.Kav. 52-53, Senayan</p>
                             </td>
-                            <td class="p-4">
+                            <td class="p-4 text-center whitespace-nowrap">
                                 <span
                                     class="bg-green-100 text-dki-green text-[9px] font-black px-3 py-1.5 rounded-full uppercase">Terverifikasi</span>
                             </td>
-                            <td class="p-4 text-center">
+                            <td class="p-4 text-center whitespace-nowrap">
                                 <a href="pemeriksaan.html"
-                                    class="bg-dki-blue text-white text-[10px] font-black px-4 py-2 rounded-lg hover:bg-opacity-90 transition shadow-sm uppercase">Ubah
+                                    class="inline-block bg-dki-blue text-white text-[10px] font-black px-4 py-2 rounded-lg hover:bg-opacity-90 transition shadow-sm uppercase">Ubah
                                     Data</a>
                             </td>
                         </tr>
                         <tr class="hover:bg-slate-50 transition-colors">
-                            <td class="p-4">
+                            <td class="p-4 whitespace-nowrap">
                                 <div class="flex items-center gap-3">
                                     <div
-                                        class="h-10 w-10 bg-blue-50 text-dki-blue flex items-center justify-center rounded-xl shadow-sm">
+                                        class="h-10 w-10 bg-blue-50 text-dki-blue flex items-center justify-center rounded-xl shadow-sm shrink-0">
                                         <i class="fas fa-house-user"></i>
                                     </div>
                                     <div>
-                                        <div class="font-bold text-dark-text leading-tight uppercase italic">Rumah Yoga
-                                        </div>
                                         <div
-                                            class="text-[10px] text-dki-blue font-black tracking-tighter uppercase mt-0.5">
+                                            class="font-bold text-dark-text leading-tight uppercase italic text-xs md:text-sm">
+                                            Rumah Yoga</div>
+                                        <div
+                                            class="text-[9px] md:text-[10px] text-dki-blue font-black tracking-tighter uppercase mt-0.5">
                                             NPOR-2026-000001</div>
                                     </div>
                                 </div>
                             </td>
-                            <td class="p-4">
-                                <div class="font-bold text-slate-700 uppercase leading-none">Kardi</div>
+                            <td class="p-4 whitespace-nowrap">
+                                <div class="font-bold text-slate-700 uppercase leading-none text-xs">Kardi</div>
                                 <div class="text-[10px] text-slate-400 font-mono mt-1">1.2203.2201</div>
                             </td>
                             <td class="p-4">
-                                <p class="text-xs text-slate-500 leading-relaxed max-w-xs">Jl. Gatot Subroto, Kuningan
-                                    Barat</p>
+                                <p class="text-[11px] md:text-xs text-slate-500 leading-relaxed min-w-[200px] max-w-xs">
+                                    Jl. Gatot Subroto, Kuningan Barat</p>
                             </td>
-                            <td class="p-4">
+                            <td class="p-4 text-center whitespace-nowrap">
                                 <span
                                     class="bg-amber-100 text-dki-orange text-[9px] font-black px-3 py-1.5 rounded-full uppercase">Belum
                                     Diverifikasi</span>
                             </td>
-                            <td class="p-4 text-center">
+                            <td class="p-4 text-center whitespace-nowrap">
                                 <a href="pemeriksaan.html"
-                                    class="bg-dki-blue text-white text-[10px] font-black px-4 py-2 rounded-lg hover:bg-opacity-90 transition shadow-sm uppercase">Ubah
+                                    class="inline-block bg-dki-blue text-white text-[10px] font-black px-4 py-2 rounded-lg hover:bg-opacity-90 transition shadow-sm uppercase">Ubah
                                     Data</a>
                             </td>
                         </tr>
@@ -327,6 +344,14 @@
 
     <!-- Bootstrap 5 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            sidebar.classList.toggle('-translate-x-full');
+            overlay.classList.toggle('hidden');
+        }
+    </script>
 </body>
 
 </html>
