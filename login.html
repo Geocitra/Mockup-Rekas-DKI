@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Portal - REKAS JKT</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            /* Ubah ke overflow-x saja agar mobile bisa scroll ke bawah */
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        .split-container {
+            height: 100vh;
+            display: flex;
+        }
+
+        /* Sisi Kiri: Slider */
+        .slider-section {
+            flex: 1.2;
+            position: relative;
+            background-color: #000;
+            overflow: hidden;
+        }
+
+        .carousel-item {
+            height: 100vh;
+            position: relative;
+        }
+
+        .carousel-item img {
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
+            filter: brightness(0.6);
+        }
+
+        .overlay-content {
+            position: absolute;
+            bottom: 10%;
+            left: 10%;
+            right: 10%;
+            color: white;
+            z-index: 10;
+        }
+
+        .logo-jakarta {
+            width: 80px;
+            margin-bottom: 20px;
+        }
+
+        /* Sisi Kanan: Login Section */
+        .login-section {
+            flex: 0.8;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 50px;
+            overflow-y: auto;
+        }
+
+        .login-content {
+            width: 100%;
+            max-width: 450px;
+        }
+
+        /* Role Cards Style */
+        .role-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            text-decoration: none;
+            display: block;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .role-card:hover {
+            border-color: #005A9E;
+            background-color: #f8fbff;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 90, 158, 0.1);
+        }
+
+        .role-title {
+            color: #004b84;
+            font-weight: 700;
+            margin-bottom: 4px;
+            display: block;
+        }
+
+        .role-desc {
+            color: #777;
+            font-size: 0.85rem;
+        }
+
+        .footer-status {
+            background-color: #e6fffa;
+            color: #0694a2;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 10px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .status-dot {
+            height: 8px;
+            width: 8px;
+            background-color: #31c48d;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        /* RESPONSIVE BREAKPOINT */
+        @media (max-width: 992px) {
+            .split-container {
+                flex-direction: column;
+                /* Ubah jadi atas-bawah */
+                height: auto;
+            }
+
+            .slider-section {
+                flex: none;
+                height: 40vh;
+                /* Slider hanya tampil setengah layar di mobile */
+                min-height: 300px;
+            }
+
+            .carousel-item {
+                height: 40vh;
+                min-height: 300px;
+            }
+
+            .login-section {
+                flex: none;
+                padding: 40px 20px;
+                background: #fff;
+            }
+
+            .overlay-content {
+                bottom: 20px;
+                left: 20px;
+                right: 20px;
+            }
+
+            .overlay-content h1 {
+                font-size: 1.5rem !important;
+                /* Perkecil judul di mobile */
+            }
+
+            .overlay-content p {
+                font-size: 0.9rem !important;
+                margin-bottom: 0;
+            }
+
+            .logo-jakarta {
+                width: 50px;
+                margin-bottom: 10px;
+            }
+
+            .login-content h2 {
+                font-size: 1.5rem;
+                text-align: center;
+            }
+
+            .login-content p.text-muted {
+                text-align: center;
+                margin-bottom: 30px !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="split-container">
+        <!-- Sisi Kiri: Carousel Slider -->
+        <div class="slider-section">
+            <div id="loginCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <!-- Slide 1 -->
+                    <div class="carousel-item active" data-bs-interval="5000">
+                        <img src="img/dki-1.png" alt="Jakarta 1">
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="carousel-item" data-bs-interval="5000">
+                        <img src="img/dki-2.png" alt="Jakarta 2">
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="carousel-item" data-bs-interval="5000">
+                        <img src="img/dki-3.png" alt="Jakarta 3">
+                    </div>
+                </div>
+            </div>
+
+            <div class="overlay-content">
+                <img src="img/logo-dki.png" alt="Logo DKI" class="logo-jakarta">
+                <h1 class="display-4 fw-bold">Transformasi Digital <br>Retribusi Persampahan</h1>
+                <p class="lead">Sistem Monitoring & Pelaporan Retribusi (REKAS) Terintegrasi Pemerintah Provinsi DKI
+                    Jakarta.</p>
+            </div>
+        </div>
+
+        <!-- Sisi Kanan: Role Selection -->
+        <div class="login-section">
+            <div class="login-content">
+                <h2 class="fw-bold mb-1">Selamat Datang Kembali</h2>
+                <p class="text-muted mb-5">Pilih role (hak akses) di bawah ini untuk memulai sesi simulasi Anda.</p>
+
+                <div class="role-options">
+
+                    <!-- Role: Kepala Dinas (Dinas) -->
+                    <a href="dashboard.html" class="role-card">
+                        <span class="role-title">Dinas Lingkungan Hidup</span>
+                        <span class="role-desc">Login sbg: Staff Dinas Lingkungan Hidup</span>
+                    </a>
+
+                    <!-- Role: Wajib Retribusi (User Folder) -->
+                    <a href="user/dashboard-wajib.html" class="role-card"
+                        style="border-color: #22C55E; background-color: #f6fffa;">
+                        <span class="role-title" style="color: #198754;">Wajib Retribusi (Warga)</span>
+                        <span class="role-desc">Login sbg: Kardi (Member Sejak 2026)</span>
+                    </a>
+                </div>
+
+                <div class="footer-status">
+                    <span class="status-dot"></span>
+                    Engine Database Mockup Ready
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

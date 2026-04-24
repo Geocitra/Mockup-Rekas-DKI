@@ -1,255 +1,309 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Portal - REKAS JKT</title>
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+    <title>e-REKAS DKI Jakarta | Sistem Retribusi & Kas Daerah</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        rekas: {
+                            primary: '#10b981',   /* Emerald 500 - Hijau Utama */
+                            accent: '#059669',    /* Emerald 600 - Hijau Gelap untuk Hover/Kontras */
+                            dark: '#064e3b',      /* Emerald 900 - Teks Utama/Heading */
+                            light: '#ecfdf5',     /* Emerald 50 - Latar Belakang Aksen */
+                            surface: '#ffffff'    /* Putih Bersih */
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
     <style>
         body {
-            font-family: 'Poppins', sans-serif;
-            /* Ubah ke overflow-x saja agar mobile bisa scroll ke bawah */
-            overflow-x: hidden;
-            margin: 0;
-            padding: 0;
+            background-color: #f8fafc;
+            /* Slate 50 */
+            color: #334155;
+            /* Slate 700 */
         }
 
-        .split-container {
-            height: 100vh;
-            display: flex;
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(16, 185, 129, 0.15);
         }
 
-        /* Sisi Kiri: Slider */
-        .slider-section {
-            flex: 1.2;
-            position: relative;
-            background-color: #000;
-            overflow: hidden;
+        .glass-card {
+            background: #ffffff;
+            border: 1px solid rgba(16, 185, 129, 0.1);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
         }
 
-        .carousel-item {
-            height: 100vh;
-            position: relative;
+        .hero-gradient {
+            background: linear-gradient(135deg, #ecfdf5 0%, #ffffff 100%);
         }
 
-        .carousel-item img {
-            object-fit: cover;
-            height: 100%;
-            width: 100%;
-            filter: brightness(0.6);
-        }
-
-        .overlay-content {
-            position: absolute;
-            bottom: 10%;
-            left: 10%;
-            right: 10%;
-            color: white;
-            z-index: 10;
-        }
-
-        .logo-jakarta {
-            width: 80px;
-            margin-bottom: 20px;
-        }
-
-        /* Sisi Kanan: Login Section */
-        .login-section {
-            flex: 0.8;
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 50px;
-            overflow-y: auto;
-        }
-
-        .login-content {
-            width: 100%;
-            max-width: 450px;
-        }
-
-        /* Role Cards Style */
-        .role-card {
-            border: 1px solid #e0e0e0;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 15px;
-            text-decoration: none;
-            display: block;
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-
-        .role-card:hover {
-            border-color: #005A9E;
-            background-color: #f8fbff;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 90, 158, 0.1);
-        }
-
-        .role-title {
-            color: #004b84;
-            font-weight: 700;
-            margin-bottom: 4px;
-            display: block;
-        }
-
-        .role-desc {
-            color: #777;
-            font-size: 0.85rem;
-        }
-
-        .footer-status {
-            background-color: #e6fffa;
-            color: #0694a2;
-            font-size: 12px;
-            font-weight: 600;
-            padding: 10px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 30px;
-        }
-
-        .status-dot {
-            height: 8px;
-            width: 8px;
-            background-color: #31c48d;
-            border-radius: 50%;
-            display: inline-block;
-        }
-
-        /* RESPONSIVE BREAKPOINT */
-        @media (max-width: 992px) {
-            .split-container {
-                flex-direction: column;
-                /* Ubah jadi atas-bawah */
-                height: auto;
-            }
-
-            .slider-section {
-                flex: none;
-                height: 40vh;
-                /* Slider hanya tampil setengah layar di mobile */
-                min-height: 300px;
-            }
-
-            .carousel-item {
-                height: 40vh;
-                min-height: 300px;
-            }
-
-            .login-section {
-                flex: none;
-                padding: 40px 20px;
-                background: #fff;
-            }
-
-            .overlay-content {
-                bottom: 20px;
-                left: 20px;
-                right: 20px;
-            }
-
-            .overlay-content h1 {
-                font-size: 1.5rem !important;
-                /* Perkecil judul di mobile */
-            }
-
-            .overlay-content p {
-                font-size: 0.9rem !important;
-                margin-bottom: 0;
-            }
-
-            .logo-jakarta {
-                width: 50px;
-                margin-bottom: 10px;
-            }
-
-            .login-content h2 {
-                font-size: 1.5rem;
-                text-align: center;
-            }
-
-            .login-content p.text-muted {
-                text-align: center;
-                margin-bottom: 30px !important;
-            }
+        .text-gradient {
+            background: linear-gradient(to right, #064e3b, #10b981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
     </style>
 </head>
 
-<body>
+<body class="font-sans antialiased selection:bg-rekas-primary selection:text-white">
 
-    <div class="split-container">
-        <!-- Sisi Kiri: Carousel Slider -->
-        <div class="slider-section">
-            <div id="loginCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <!-- Slide 1 -->
-                    <div class="carousel-item active" data-bs-interval="5000">
-                        <img src="img/dki-1.png" alt="Jakarta 1">
-                    </div>
-                    <!-- Slide 2 -->
-                    <div class="carousel-item" data-bs-interval="5000">
-                        <img src="img/dki-2.png" alt="Jakarta 2">
-                    </div>
-                    <!-- Slide 3 -->
-                    <div class="carousel-item" data-bs-interval="5000">
-                        <img src="img/dki-3.png" alt="Jakarta 3">
+    <nav class="fixed w-full z-50 transition-all duration-300 glass-nav top-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex items-center gap-4">
+                    <img src="./img/logo-dki.png" alt="Logo DKI Jakarta" class="h-12 w-auto object-contain">
+                    <div class="flex flex-col border-l border-slate-300 pl-4">
+                        <span class="text-xl font-bold tracking-tight text-rekas-dark leading-none">e-REKAS</span>
+                        <span class="text-[10px] text-rekas-primary font-bold tracking-widest mt-1 uppercase">Pemprov
+                            DKI Jakarta</span>
                     </div>
                 </div>
-            </div>
-
-            <div class="overlay-content">
-                <img src="img/logo-dki.png" alt="Logo DKI" class="logo-jakarta">
-                <h1 class="display-4 fw-bold">Transformasi Digital <br>Retribusi Persampahan</h1>
-                <p class="lead">Sistem Monitoring & Pelaporan Retribusi (REKAS) Terintegrasi Pemerintah Provinsi DKI
-                    Jakarta.</p>
-            </div>
-        </div>
-
-        <!-- Sisi Kanan: Role Selection -->
-        <div class="login-section">
-            <div class="login-content">
-                <h2 class="fw-bold mb-1">Selamat Datang Kembali</h2>
-                <p class="text-muted mb-5">Pilih role (hak akses) di bawah ini untuk memulai sesi simulasi Anda.</p>
-
-                <div class="role-options">
-
-                    <!-- Role: Kepala Dinas (Dinas) -->
-                    <a href="dashboard.html" class="role-card">
-                        <span class="role-title">Dinas Lingkungan Hidup</span>
-                        <span class="role-desc">Login sbg: Staff Dinas Lingkungan Hidup</span>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#modul"
+                        class="text-sm font-semibold text-slate-600 hover:text-rekas-primary transition-colors">Modul
+                        Sistem</a>
+                    <a href="#layanan"
+                        class="text-sm font-semibold text-slate-600 hover:text-rekas-primary transition-colors">Layanan
+                        Wajib Retribusi</a>
+                    <a href="login.html"
+                        class="px-6 py-2.5 rounded-lg bg-rekas-primary text-white font-bold text-sm hover:bg-rekas-accent transition-all transform hover:-translate-y-0.5 shadow-lg shadow-rekas-primary/30">
+                        <i class="fa-solid fa-right-to-bracket mr-2"></i> Portal Login
                     </a>
-
-                    <!-- Role: Wajib Retribusi (User Folder) -->
-                    <a href="user/dashboard-wajib.html" class="role-card"
-                        style="border-color: #22C55E; background-color: #f6fffa;">
-                        <span class="role-title" style="color: #198754;">Wajib Retribusi (Warga)</span>
-                        <span class="role-desc">Login sbg: Kardi (Member Sejak 2026)</span>
-                    </a>
-                </div>
-
-                <div class="footer-status">
-                    <span class="status-dot"></span>
-                    Engine Database Mockup Ready
                 </div>
             </div>
         </div>
-    </div>
+    </nav>
 
-    <!-- Bootstrap 5 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <section class="relative min-h-screen flex items-center pt-24 overflow-hidden hero-gradient">
+        <div
+            class="absolute top-1/3 -right-32 w-[500px] h-[500px] bg-rekas-primary/5 rounded-full blur-[100px] pointer-events-none">
+        </div>
+        <div
+            class="absolute bottom-0 -left-32 w-[400px] h-[400px] bg-emerald-300/10 rounded-full blur-[100px] pointer-events-none">
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full py-12">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <div
+                        class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-rekas-light border border-rekas-primary/30 text-rekas-accent text-xs font-bold uppercase tracking-widest mb-6">
+                        <span class="w-2 h-2 rounded-full bg-rekas-primary animate-pulse"></span>
+                        Digitalisasi Pendapatan Daerah
+                    </div>
+                    <h1 class="text-5xl lg:text-6xl font-bold leading-tight mb-6 text-gradient">
+                        Transparansi & Efisiensi Retribusi Daerah.
+                    </h1>
+                    <p class="text-lg text-slate-600 mb-10 leading-relaxed max-w-xl">
+                        Sistem Informasi Manajemen Retribusi dan Kas Daerah Terpadu. Memfasilitasi penerbitan SKRD,
+                        pemantauan SSRD, dan validasi penerimaan daerah secara *real-time* dan akuntabel.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="login.html"
+                            class="px-8 py-4 rounded-xl bg-rekas-primary text-white font-bold hover:bg-rekas-accent transition-all shadow-xl shadow-rekas-primary/20 flex items-center gap-2">
+                            Masuk e-REKAS <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <a href="#modul"
+                            class="px-8 py-4 rounded-xl border border-slate-300 bg-white font-semibold text-slate-700 hover:border-rekas-primary hover:text-rekas-primary transition-all">
+                            Pelajari Alur
+                        </a>
+                    </div>
+                </div>
+
+                <div class="relative lg:block hidden">
+                    <div
+                        class="grid grid-cols-2 gap-5 transform -rotate-3 hover:rotate-0 transition-transform duration-700 ease-out">
+                        <div
+                            class="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-200 h-72 transform translate-y-12 bg-white group">
+                            <div
+                                class="absolute inset-0 bg-rekas-light/40 group-hover:bg-transparent transition-all duration-500 z-10">
+                            </div>
+                            <img src="./img/dki-1.png" alt="Dashboard Preview 1" class="w-full h-full object-cover">
+                            <div
+                                class="absolute bottom-4 left-4 z-20 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded text-xs font-bold text-slate-800 border border-slate-200 shadow-sm">
+                                <i class="fa-solid fa-chart-line text-rekas-primary mr-1"></i> Monitoring SSRD
+                            </div>
+                        </div>
+                        <div
+                            class="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-200 h-72 bg-white group">
+                            <div
+                                class="absolute inset-0 bg-rekas-light/40 group-hover:bg-transparent transition-all duration-500 z-10">
+                            </div>
+                            <img src="./img/dki-2.png" alt="Dashboard Preview 2" class="w-full h-full object-cover">
+                            <div
+                                class="absolute bottom-4 left-4 z-20 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded text-xs font-bold text-slate-800 border border-slate-200 shadow-sm">
+                                <i class="fa-solid fa-file-invoice-dollar text-rekas-accent mr-1"></i> Penerbitan SKRD
+                            </div>
+                        </div>
+                        <div
+                            class="relative col-span-2 rounded-2xl overflow-hidden shadow-2xl border border-slate-200 h-48 mt-2 bg-white group">
+                            <div
+                                class="absolute inset-0 bg-rekas-light/40 group-hover:bg-transparent transition-all duration-500 z-10">
+                            </div>
+                            <img src="./img/dki-3.png" alt="Dashboard Preview 3" class="w-full h-full object-cover"
+                                style="object-position: center 30%;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="modul" class="py-24 bg-white border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">Arsitektur Layanan Retribusi</h2>
+                <div class="h-1 w-24 bg-rekas-primary mx-auto rounded-full mb-6"></div>
+                <p class="text-slate-600 max-w-2xl mx-auto">Siklus tertutup (*closed-loop system*) mulai dari pendataan
+                    subjek/objek, penetapan tagihan, hingga validasi penyetoran ke Kas Daerah.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div
+                    class="glass-card p-8 rounded-2xl hover:-translate-y-2 hover:border-rekas-primary transition-all duration-300 group">
+                    <div
+                        class="w-14 h-14 bg-rekas-light rounded-xl flex items-center justify-center mb-6 text-rekas-primary group-hover:bg-rekas-primary group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-users-gear text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-800 mb-3">Master Data Terpusat</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed">Pengelolaan Subjek dan Objek Retribusi secara
+                        komprehensif oleh admin OPD terkait.</p>
+                </div>
+
+                <div
+                    class="glass-card p-8 rounded-2xl hover:-translate-y-2 hover:border-rekas-primary transition-all duration-300 group">
+                    <div
+                        class="w-14 h-14 bg-rekas-light rounded-xl flex items-center justify-center mb-6 text-rekas-primary group-hover:bg-rekas-primary group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-file-signature text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-800 mb-3">Penetapan SKRD</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed">Penerbitan Surat Ketetapan Retribusi Daerah dengan
+                        kalkulasi otomatis sesuai regulasi Perda.</p>
+                </div>
+
+                <div
+                    class="glass-card p-8 rounded-2xl hover:-translate-y-2 hover:border-rekas-primary transition-all duration-300 group">
+                    <div
+                        class="w-14 h-14 bg-rekas-light rounded-xl flex items-center justify-center mb-6 text-rekas-primary group-hover:bg-rekas-primary group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-money-bill-transfer text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-800 mb-3">Penerbitan SSRD</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed">Fasilitas unggah bukti bayar dan pencetakan Surat
+                        Setoran Retribusi Daerah bagi Wajib Retribusi.</p>
+                </div>
+
+                <div
+                    class="glass-card p-8 rounded-2xl hover:-translate-y-2 hover:border-rekas-primary transition-all duration-300 group">
+                    <div
+                        class="w-14 h-14 bg-rekas-light rounded-xl flex items-center justify-center mb-6 text-rekas-primary group-hover:bg-rekas-primary group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-money-bill-wave text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-800 mb-3">Validasi & Rekonsiliasi</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed">Verifikasi setoran oleh petugas pemeriksa dan
+                        rekonsiliasi data kas daerah secara *real-time*.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="layanan" class="py-24 relative bg-rekas-light/50 border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row gap-16 items-center">
+                <div class="lg:w-5/12">
+                    <h2 class="text-3xl font-bold text-rekas-dark mb-6 leading-tight">Otorisasi Ganda,<br><span
+                            class="text-rekas-primary">Satu Pintu Eksekusi.</span></h2>
+                    <p class="text-slate-600 mb-8 leading-relaxed">Sistem memisahkan akses antarmuka (*Separation of
+                        Concerns*) antara pembuat kebijakan (Petugas OPD) dan penerima manfaat (Wajib Retribusi) demi
+                        keamanan dan kenyamanan operasional.</p>
+
+                    <div class="bg-white border border-slate-200 shadow-sm p-5 rounded-xl mb-6">
+                        <h4 class="text-slate-800 font-bold text-sm mb-2 flex items-center gap-2"><i
+                                class="fa-solid fa-user-shield text-rekas-primary"></i> Akses Petugas / Admin OPD</h4>
+                        <p class="text-xs text-slate-500">Manajemen Objek, List SKRD, List Subjek, Pemeriksaan Setoran,
+                            Monitoring SSRD, dan Validasi Pembayaran.</p>
+                    </div>
+                </div>
+
+                <div class="lg:w-7/12">
+                    <div
+                        class="bg-rekas-primary p-8 rounded-2xl shadow-xl shadow-rekas-primary/20 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 p-6 opacity-10">
+                            <i class="fa-solid fa-users text-8xl text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-6 flex items-center gap-3 relative z-10">
+                            <i class="fa-solid fa-user-tie text-white"></i> Portal Wajib Retribusi
+                        </h3>
+
+                        <div class="grid sm:grid-cols-2 gap-4 relative z-10">
+                            <div
+                                class="bg-white/10 backdrop-blur-md p-4 rounded-xl border border-white/20 hover:bg-white/20 transition-colors">
+                                <div class="text-white mb-2"><i class="fa-solid fa-file-invoice"></i></div>
+                                <h5 class="text-white font-semibold text-sm mb-1">Tagihan SKRD</h5>
+                                <p class="text-xs text-rekas-light opacity-90">Lihat rincian tagihan retribusi yang
+                                    telah ditetapkan oleh dinas terkait.</p>
+                            </div>
+                            <div
+                                class="bg-white/10 backdrop-blur-md p-4 rounded-xl border border-white/20 hover:bg-white/20 transition-colors">
+                                <div class="text-white mb-2"><i class="fa-solid fa-wallet"></i></div>
+                                <h5 class="text-white font-semibold text-sm mb-1">Layanan Pembayaran</h5>
+                                <p class="text-xs text-rekas-light opacity-90">Unggah bukti setor bank untuk
+                                    diverifikasi oleh bendahara penerima.</p>
+                            </div>
+                            <div
+                                class="bg-white/10 backdrop-blur-md p-4 rounded-xl border border-white/20 hover:bg-white/20 transition-colors">
+                                <div class="text-white mb-2"><i class="fa-solid fa-receipt"></i></div>
+                                <h5 class="text-white font-semibold text-sm mb-1">Bukti SSRD</h5>
+                                <p class="text-xs text-rekas-light opacity-90">Unduh Surat Setoran Retribusi Daerah yang
+                                    telah tervalidasi secara sah.</p>
+                            </div>
+                            <div class="bg-white/10 backdrop-blur-md p-4 rounded-xl border border-white/20 flex flex-col justify-center items-start hover:bg-white hover:border-white group transition-all cursor-pointer"
+                                onclick="window.location.href='login.html'">
+                                <a href="login.html"
+                                    class="text-sm font-bold text-white group-hover:text-rekas-primary transition-colors flex items-center">
+                                    Akses Dasbor Wajib <i
+                                        class="fa-solid fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-10 bg-white border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-3">
+                <img src="./img/logo-dki.png" alt="Logo DKI"
+                    class="h-10 w-auto opacity-80 hover:opacity-100 transition-all">
+                <div class="text-left">
+                    <h5 class="text-rekas-dark font-bold text-sm tracking-wide">e-REKAS DKI JAKARTA</h5>
+                    <p class="text-slate-500 text-xs mt-0.5">Sistem Informasi Retribusi dan Kas Daerah</p>
+                </div>
+            </div>
+
+            <div class="text-slate-500 text-xs font-medium text-center md:text-right">
+                &copy; 2026 Pemerintah Provinsi DKI Jakarta.<br>
+                <span class="opacity-75">Arsitektur Sistem Manajemen Data Terpadu.</span>
+            </div>
+        </div>
+    </footer>
+
 </body>
 
 </html>
